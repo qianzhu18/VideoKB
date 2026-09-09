@@ -1,0 +1,46 @@
+# dovideo 生产编排:API + Redis(可选热缓存)+ Qdrant(可选向量库)
+# 用法: cp .env.production.example .env && docker compose -f docker-compose.prod.yml --env-file .env up -d
+services:
+  dovideo:
+    build: .
+    container_name: dovideo-api
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9101:9101"   # 只绑本机,由 Nginx 反代对外
+    environment:
+      SILICONFLOW_API_KEY: ${SILICONFLOW_API_KEY:?必须配置}
+      SILICONFLOW_BASE_URL: ${SILICONFLOW_BASE_URL:-https://api.siliconflow.cn/v1}
+      LLM_MODEL: ${LLM_MODEL:-deepseek-ai/DeepSeek-V3.2}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-m3}
+      ASR_MODEL: ${ASR_MODEL:-TeleAI/TeleSpeechASR}
+      DOVIDEO_API_TOKEN: ${DOVIDEO_API_TOKEN:?必须配置访问令牌}
+      AGENT_MAX_ROUNDS: ${AGENT_MAX_ROUNDS:-2}
+      AGENT_MAX_DURATION_MS: ${AGENT_MAX_DURATION_MS:-120000}
+      AGENT_MAX_ESTIMATED_TOKENS: ${AGENT_MAX_ESTIMATED_TOKENS:-50000}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      QDRANT_URL: ${QDRANT_URL:-http://qdrant:6333}
+      QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+    volumes:
+      - dovideo-data:/data
+    depends_on:
+      redis:
+        condition: service_started
+
+  redis:
+    image: redis:7.4-alpine
+    container_name: dovideo-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+
+  qdrant:
+    image: qdrant/qdrant:v1.18.2
+    container_name: dovideo-qdrant
+    restart: unless-stopped
+    volumes:
+      - qdrant-data:/qdrant/storage
+
+volumes:
+  dovideo-data:
+  redis-data:
+  qdrant-data:

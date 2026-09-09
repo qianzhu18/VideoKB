@@ -1,0 +1,29 @@
+[project]
+name = "dovideo"
+version = "0.1.0"
+description = "Evidence-constrained Video Agent — Python/TypeScript port and extension of the DOVideo-AI core design"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dovideo"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
