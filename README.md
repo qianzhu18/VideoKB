@@ -88,3 +88,27 @@ uvicorn dovideo.api.app:create_app --factory --port 9101
 ## 与原版的刻意差异
 
 RocketMQ → 进程内 runner(重投语义一致,可平移 ARQ);MySQL → SQLite(接口不变);MinIO → 本地路径 + `#timestampMs=` 锚点降级;Vue → Next.js(进行中,见蓝图 Phase 4)。
+
+## 批量入库与金标评测(B 站合集实战)
+
+`scripts/` 提供三个独立入口(均幂等可重跑,context/chunks 命中 checkpoint 不重烧 ASR/OCR):
+
+```bash
+# 1) 批量入库:目录内 mp4 → ASR∥OCR → 5min 分块 → Qdrant 双路入库 → Agent 总结
+.venv/bin/python scripts/ingest_bilibili.py data/media/bilibili-mianshi --concurrency 2
+
+# 2) 金标评测:13 期 × (面试官视角 goal + 5 关键词),三闸:结构合法 / 证据支持≥0.8 / 关键词覆盖≥0.8
+.venv/bin/python scripts/eval_bilibili.py                 # 全量;报告落 evaluation/reports/
+.venv/bin/python scripts/eval_bilibili.py --cases 03 06   # 只重跑失败用例
+
+# 3) 检索验证:跨视频语义检索(Qdrant 全库) + 单视频 evidence_search 全链路
+.venv/bin/python scripts/verify_kb.py
+```
+
+金标数据集:[evaluation/golden-bilibili-mianshi.json](evaluation/golden-bilibili-mianshi.json)
+(B 站《计算机专业面试总结》合集 13 期,约 12 小时)。
+
+实战校准的三条闸门经验(细节见各脚本注释):默认预算三闸门按"单次交互"设计,
+长视频批量场景需放宽 `AGENT_MAX_DURATION_MS` / `AGENT_MAX_ESTIMATED_TOKENS` /
+`LLM_TIMEOUT_SECONDS`;硅基流动对超长生成有 ~600s 服务端断连,高峰期(≈11 tok/s)
+大草稿会反复熔断,离峰重试即可恢复(Planner 任务数随机,小规划自然通过)。
