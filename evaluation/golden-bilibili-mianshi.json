@@ -1,0 +1,86 @@
+{
+  "name": "bilibili-mianshi-collection",
+  "source": "https://space.bilibili.com/3493134174521912/lists/6589357?type=season",
+  "description": "B 站《计算机专业面试总结》合集 13 期金标评测集:每期一个主题 goal + 5 个必覆盖关键词;证据支持率与结构合法性由金标评测器统一核验",
+  "createdAt": "2026-09-20",
+  "cases": [
+    {
+      "mediaId": "bili-mianshi-01",
+      "title": "【计算机基础】计算机网络面试八股总结",
+      "goal": "以面试官视角总结这节计算机网络课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["TCP", "UDP", "三次握手", "四次挥手", "HTTPS"]
+    },
+    {
+      "mediaId": "bili-mianshi-02",
+      "title": "【计算机基础】数据库MySQL面试八股总结",
+      "goal": "以面试官视角总结这节 MySQL 课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["索引", "B+树", "事务", "隔离级别", "MVCC"]
+    },
+    {
+      "mediaId": "bili-mianshi-03",
+      "title": "【计算机基础】Redis面试八股总结",
+      "goal": "以面试官视角总结这节 Redis 课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["RDB", "AOF", "持久化", "缓存穿透", "缓存雪崩"]
+    },
+    {
+      "mediaId": "bili-mianshi-04",
+      "title": "【计算机基础】操作系统面试八股总结",
+      "goal": "以面试官视角总结这节操作系统课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["进程", "线程", "死锁", "虚拟内存", "调度"]
+    },
+    {
+      "mediaId": "bili-mianshi-05",
+      "title": "【计算机八股】Java SE基础八股大总结",
+      "goal": "以面试官视角总结这节 Java SE 基础课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["HashMap", "ConcurrentHashMap", "集合", "面向对象", "String"]
+    },
+    {
+      "mediaId": "bili-mianshi-06",
+      "title": "【JUC八股】Java并发编程面试常问大总结",
+      "goal": "以面试官视角总结这节 Java 并发(JUC)课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["线程池", "volatile", "synchronized", "CAS", "AQS"]
+    },
+    {
+      "mediaId": "bili-mianshi-07",
+      "title": "【Spring系列八股】Spring、SpringBoot面试考点大总结",
+      "goal": "以面试官视角总结这节 Spring/SpringBoot 课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["IOC", "AOP", "Bean", "循环依赖", "事务"]
+    },
+    {
+      "mediaId": "bili-mianshi-08",
+      "title": "【计算机八股】消息队列面试考点大总结(Kafka、RocketMQ)",
+      "goal": "以面试官视角总结这节消息队列课(Kafka、RocketMQ)的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["Kafka", "RocketMQ", "削峰", "重复消费", "顺序消息"]
+    },
+    {
+      "mediaId": "bili-mianshi-09",
+      "title": "【计算机八股】Mybatis八股大总结",
+      "goal": "以面试官视角总结这节 MyBatis 课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["MyBatis", "一级缓存", "二级缓存", "动态SQL", "分页"]
+    },
+    {
+      "mediaId": "bili-mianshi-10",
+      "title": "【计算机基础】Java虚拟机JVM面试八股总结",
+      "goal": "以面试官视角总结这节 JVM 课的高频考点,并给出每道题的答题框架",
+      "expectedKeywords": ["JVM", "垃圾回收", "类加载", "堆", "G1"]
+    },
+    {
+      "mediaId": "bili-mianshi-11",
+      "title": "【思维导图】苍穹外卖项目面试八股大总结",
+      "goal": "以面试官视角总结苍穹外卖项目的面试考点,并给出每道题的答题框架",
+      "expectedKeywords": ["苍穹外卖", "JWT", "WebSocket", "定时任务", "缓存"]
+    },
+    {
+      "mediaId": "bili-mianshi-12",
+      "title": "【Java开发】黑马点评项目面试八股大总结",
+      "goal": "以面试官视角总结黑马点评项目的面试考点,并给出每道题的答题框架",
+      "expectedKeywords": ["黑马点评", "分布式锁", "优惠券", "点赞", "消息队列"]
+    },
+    {
+      "mediaId": "bili-mianshi-13",
+      "title": "【计算机八股】AI基础核心概念大总结",
+      "goal": "以面试官视角总结这节 AI 基础课的核心概念,并给出每道题的答题框架",
+      "expectedKeywords": ["Transformer", "注意力机制", "RAG", "微调", "大模型"]
+    }
+  ]
+}
