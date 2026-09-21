@@ -1,12 +1,12 @@
-"""对 B 站《计算机专业面试总结》合集跑金标评测。
+"""对本地技术视频语料跑金标评测。
 
-前提:scripts/ingest_bilibili.py 已把 13 期视频入过库(media:context 已有,评测不重烧 ASR/OCR)。
+前提:scripts/ingest_corpus.py 已把视频入过库(media:context 已有,评测不重烧 ASR/OCR)。
 评测 goal 与入库 goal 不同 → 不命中终态 checkpoint,真实走 Planner→Executor→Critic。
 
 用法(在 dovideo/ 目录下):
-    .venv/bin/python scripts/eval_bilibili.py [--cases 01 03] [--out evaluation/reports/]
+    .venv/bin/python scripts/eval_corpus.py [--cases 01 03] [--out evaluation/reports/]
 
-输出:evaluation/reports/bilibili-mianshi-golden-<时间戳>.json + 控制台汇总
+输出:evaluation/reports/corpus-golden-<时间戳>.json + 控制台汇总
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ def load_dotenv(path: pathlib.Path) -> None:
 
 async def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", default=str(DOVIDEO_ROOT / "evaluation/golden-bilibili-mianshi.json"))
+    parser.add_argument("--dataset", default=str(DOVIDEO_ROOT / "evaluation/technical-learning-v1.json"))
     parser.add_argument("--cases", nargs="*", default=[], help="只跑指定序号(01 02 ...),默认全部")
     parser.add_argument("--out", default=str(DOVIDEO_ROOT / "evaluation/reports"))
     args = parser.parse_args()
@@ -112,6 +112,18 @@ async def main() -> int:
             )
     passed_n = sum(1 for r in reports if r.passed)
     report = {
+        "manifest": {
+            "name": dataset["name"],
+            "schemaVersion": dataset.get("schemaVersion"),
+            "gates": dataset.get("gates", {}),
+        },
+        "runtime": {
+            "llmModel": settings.llm_model,
+            "embeddingModel": settings.embedding_model,
+            "asrModel": settings.asr_model,
+            "chunkMs": settings.chunk_ms,
+            "windowMs": settings.window_ms,
+        },
         "total": len(reports),
         "passed": passed_n,
         "passRate": passed_n / len(reports) if reports else 0.0,
@@ -121,18 +133,18 @@ async def main() -> int:
     out_dir = pathlib.Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
     ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    out_path = out_dir / f"bilibili-mianshi-golden-{ts}.json"
+    out_path = out_dir / f"corpus-golden-{ts}.json"
     out_path.write_text(
         json.dumps({"dataset": dataset["name"], "generatedAt": ts, **report}, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
     print(f"\n===== 金标评测 {report['passed']}/{report['total']} 通过 ({report['passRate']:.0%}) =====")
-    title_by_id = {c["mediaId"]: c["title"] for c in dataset["cases"]}
+    topic_by_id = {c["mediaId"]: c["topic"] for c in dataset["cases"]}
     for r in report["cases"]:
         mark = "✅" if r["passed"] else "❌"
         print(
-            f"{mark} {r['caseId']} {title_by_id.get(r['caseId'], '')}\n"
+            f"{mark} {r['caseId']} {topic_by_id.get(r['caseId'], '')}\n"
             f"   结构={r['structuredValid']} 证据支持率={r['claimEvidenceSupportRate']:.2f} "
             f"关键词覆盖={r['keywordCoverage']:.2f}"
         )

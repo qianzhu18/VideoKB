@@ -1,10 +1,11 @@
-"""把 B 站合集视频批量注册进 dovideo 知识库并触发分析入库。
+"""把本地视频语料批量注册进 VideoKB 并触发分析入库。
 
 用法(在 dovideo/ 目录下运行,保证 dovdeo.db / data 相对路径一致):
-    .venv/bin/python scripts/ingest_bilibili.py data/media/bilibili-mianshi [--only 01] [--limit N]
+    .venv/bin/python scripts/ingest_corpus.py /path/to/videos \
+        --id-prefix technical-learning [--only 01] [--limit N]
 
 - 自动加载 dovideo/.env(SILICONFLOW_API_KEY / QDRANT_*)
-- media_id = bili-mianshi-<序号>,稳定可重跑;已入库视频命中 media:context/media:chunks
+- media_id = <id-prefix>-<序号>,稳定可重跑;已入库视频命中 media:context/media:chunks
   checkpoint,不重烧 ASR/OCR
 - 每个视频:VideoContext(ASR∥OCR) → 5min 分块 → Qdrant+本地双路入库 → Agent 分析
 """
@@ -33,7 +34,9 @@ def load_dotenv(path: pathlib.Path) -> None:
 async def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("media_dir", type=str)
-    parser.add_argument("--goal", default="总结这个视频的核心考点,并列出高频面试问题")
+    parser.add_argument("--goal", default="总结视频的核心概念、关键步骤与容易混淆的点")
+    parser.add_argument("--id-prefix", default="technical-learning",
+                        help="稳定媒体 ID 的前缀,默认 technical-learning")
     parser.add_argument("--only", default="", help="只处理文件名包含该子串的视频")
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--concurrency", type=int, default=1, help="同时分析的视频数(默认 1)")
@@ -93,7 +96,7 @@ async def main() -> int:
         db_path = DOVIDEO_ROOT / db_path
     db = _sq.connect(db_path)
     stale = db.execute(
-        "DELETE FROM active_tasks WHERE media_id LIKE 'bili-mianshi-%'"
+        "DELETE FROM active_tasks WHERE media_id LIKE ?", (f"{args.id_prefix}-%",)
     ).rowcount
     db.commit()
     db.close()
@@ -102,7 +105,7 @@ async def main() -> int:
 
     async def ingest_one(f: pathlib.Path, sem: asyncio.Semaphore) -> tuple[str, str, float, str]:
         seq = f.name.split("-")[0]
-        media_id = f"bili-mianshi-{seq}"
+        media_id = f"{args.id_prefix}-{seq}"
         _register_media_builder(state, media_id, str(f.resolve()))
         t0 = time.monotonic()
         async with sem:

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "1.0",
+  "name": "technical-learning-v1",
+  "description": "A local 13-video technical learning corpus used for VideoKB acceptance. The media files are deliberately excluded from version control.",
+  "createdAt": "2026-09-21",
+  "mediaNotDistributed": true,
+  "expectedMediaCount": 13,
+  "expectedTotalBytes": 1227013314,
+  "expectedTotalDurationMs": 40137460,
+  "gates": {
+    "structuredValid": true,
+    "minClaimEvidenceSupportRate": 0.8,
+    "minKeywordCoverage": 0.8,
+    "minCorpusPassRate": 0.8
+  },
+  "cases": [
+    {
+      "mediaId": "technical-learning-01",
+      "sequence": "01",
+      "topic": "Computer networking",
+      "expectedBytes": 91404829,
+      "expectedDurationMs": 3071402,
+      "sha256": "0ddbbae5969006244256319e4f7c5ef734c2d808dca8381f2c5d3989fb1bf64a",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["TCP", "UDP", "三次握手", "四次挥手", "HTTPS"]
+    },
+    {
+      "mediaId": "technical-learning-02",
+      "sequence": "02",
+      "topic": "Relational databases",
+      "expectedBytes": 103685283,
+      "expectedDurationMs": 3354036,
+      "sha256": "6d2a333939a531e82addab24e670d3823c4c47ff95b16b79f40c7352f9f56a0d",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["索引", "B+树", "事务", "隔离级别", "MVCC"]
+    },
+    {
+      "mediaId": "technical-learning-03",
+      "sequence": "03",
+      "topic": "Redis",
+      "expectedBytes": 68223878,
+      "expectedDurationMs": 2775649,
+      "sha256": "82522b123156e3f3a7108eabf6c92c0233a0204157b473b3c39f1b864e8d9976",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["RDB", "AOF", "持久化", "缓存穿透", "缓存雪崩"]
+    },
+    {
+      "mediaId": "technical-learning-04",
+      "sequence": "04",
+      "topic": "Operating systems",
+      "expectedBytes": 73505653,
+      "expectedDurationMs": 2457019,
+      "sha256": "dbfc1f12a7370d90b6ea9b23e823d94da4095827019c90266fdf1c059b4ad7fa",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["进程", "线程", "死锁", "虚拟内存", "调度"]
+    },
+    {
+      "mediaId": "technical-learning-05",
+      "sequence": "05",
+      "topic": "Java language fundamentals",
+      "expectedBytes": 68350195,
+      "expectedDurationMs": 2107610,
+      "sha256": "8f4da50cb6635e7f1a4ea9d250e1e75e449b7732371170e8fbc017be70c0aafd",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["HashMap", "ConcurrentHashMap", "集合", "面向对象", "String"]
+    },
+    {
+      "mediaId": "technical-learning-06",
+      "sequence": "06",
+      "topic": "Java concurrency",
+      "expectedBytes": 131221570,
+      "expectedDurationMs": 3702406,
+      "sha256": "82a51b9f9cae10066794a5fd753a7de22a4b427dac88455576d2d056439959e6",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["线程池", "volatile", "synchronized", "CAS", "AQS"]
+    },
+    {
+      "mediaId": "technical-learning-07",
+      "sequence": "07",
+      "topic": "Spring application framework",
+      "expectedBytes": 93486265,
+      "expectedDurationMs": 3272650,
+      "sha256": "1a7aef725ee54a2b99dd5b895e8ef416eee112384567c1ae3f7ef2515d9fbdb0",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["IOC", "AOP", "Bean", "循环依赖", "事务"]
+    },
+    {
+      "mediaId": "technical-learning-08",
+      "sequence": "08",
+      "topic": "Message queues",
+      "expectedBytes": 91763028,
+      "expectedDurationMs": 3235823,
+      "sha256": "beb747a8ea8dd0e6faa1d60b7a37783f0ca5efcaa3ef4c32eb30eda16af9097f",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["Kafka", "RocketMQ", "削峰", "重复消费", "顺序消息"]
+    },
+    {
+      "mediaId": "technical-learning-09",
+      "sequence": "09",
+      "topic": "MyBatis",
+      "expectedBytes": 101897416,
+      "expectedDurationMs": 3109715,
+      "sha256": "defd22f786f471022be097473e28e85d5d2dc54bf05a3a022d5a7240c9232fec",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["MyBatis", "一级缓存", "二级缓存", "动态SQL", "分页"]
+    },
+    {
+      "mediaId": "technical-learning-10",
+      "sequence": "10",
+      "topic": "Java virtual machine",
+      "expectedBytes": 111400768,
+      "expectedDurationMs": 3657614,
+      "sha256": "153ffae060830770a9d3ea808f5bfd3825e011b000e8e8c89ccc97af37e6ef34",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["JVM", "垃圾回收", "类加载", "堆", "G1"]
+    },
+    {
+      "mediaId": "technical-learning-11",
+      "sequence": "11",
+      "topic": "Web application architecture",
+      "expectedBytes": 63312351,
+      "expectedDurationMs": 1968336,
+      "sha256": "aa7cc1b91845b39b13ebe9c94745490eaa3e508bbce83b022504bcc8d2ed2090",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["JWT", "WebSocket", "定时任务", "缓存", "苍穹外卖"]
+    },
+    {
+      "mediaId": "technical-learning-12",
+      "sequence": "12",
+      "topic": "Service application design",
+      "expectedBytes": 114050146,
+      "expectedDurationMs": 3490082,
+      "sha256": "f07b2cca635d86fcef3fddfd967952402b69fd7fe02b86a2632acf993d1acaed",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["分布式锁", "优惠券", "点赞", "消息队列", "黑马点评"]
+    },
+    {
+      "mediaId": "technical-learning-13",
+      "sequence": "13",
+      "topic": "AI foundations",
+      "expectedBytes": 114711932,
+      "expectedDurationMs": 3935117,
+      "sha256": "05706fa6b9315f7ce0a893ca0d0fd33988141acd46eea8684633ecc86787358e",
+      "goal": "总结视频中的核心概念、关键流程与容易混淆的点。",
+      "expectedKeywords": ["Transformer", "注意力机制", "RAG", "微调", "大模型"]
+    }
+  ]
+}

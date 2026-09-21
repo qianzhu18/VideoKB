@@ -1,7 +1,7 @@
-"""知识库入库质量验证:跨视频语义检索 + 单视频证据检索。
+"""知识库入库质量验证：跨视频语义检索和单视频证据检索。
 
 用法(在 dovideo/ 目录下):
-    .venv/bin/python scripts/verify_kb.py
+    .venv/bin/python scripts/verify_retrieval.py --id-prefix technical-learning
 
 - 跨视频:embedding 直接查 Qdrant 全库,看一个问题的证据落在哪几期视频
 - 单视频:走项目真实 evidence_search(意图规划 → 混合检索 → 时间戳锚点)
@@ -36,9 +36,9 @@ CROSS_VIDEO_QUERIES = [
     "Kafka 怎么保证消息不丢失",
 ]
 
-SINGLE_VIDEO_CASES = [
-    ("bili-mianshi-01", "三次握手的过程和每一步的作用"),
-    ("bili-mianshi-03", "缓存穿透、击穿、雪崩的区别和解决方案"),
+SINGLE_VIDEO_QUERIES = [
+    ("01", "三次握手的过程和每一步的作用"),
+    ("03", "缓存穿透、击穿、雪崩的区别和解决方案"),
 ]
 
 
@@ -59,6 +59,11 @@ def load_summary_index(db_path: pathlib.Path) -> dict[str, str]:
 
 
 async def main() -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--id-prefix", default="technical-learning")
+    args = parser.parse_args()
     load_dotenv(DOVIDEO_ROOT / ".env")
 
     from dovideo.api.app import build_default_deps
@@ -108,7 +113,8 @@ async def main() -> int:
 
     print("\n===== 单视频证据检索(项目 evidence_search 全链路)=====")
     store = CheckpointStore(db_path)
-    for media_id, q in SINGLE_VIDEO_CASES:
+    for sequence, q in SINGLE_VIDEO_QUERIES:
+        media_id = f"{args.id_prefix}-{sequence}"
         _, ctx_payload = store.load(media_id, "media:context")
         _, chunk_payload = store.load(media_id, "media:chunks")
         if not ctx_payload or not chunk_payload:

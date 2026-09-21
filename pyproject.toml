@@ -1,7 +1,7 @@
 [project]
 name = "dovideo"
-version = "0.1.0"
-description = "Evidence-constrained Video Agent — Python/TypeScript port and extension of the DOVideo-AI core design"
+version = "0.2.0"
+description = "Evidence-constrained video analysis and retrieval toolkit"
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.7",
