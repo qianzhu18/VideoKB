@@ -156,7 +156,7 @@ public class MediaService {
      * of tryLock (no explicit lease) auto-renews the lease until unlock, so a
      * slow insert can never outlive its own lock.
      */
-    private MediaFile findDuplicateByContent(Long userId, String md5) {
+    public MediaFile findDuplicateByContent(Long userId, String md5) {
         RLock dedupLock = redissonClient.getLock("lock:media:dedup:" + userId + ":" + md5);
         boolean locked = false;
         try {
