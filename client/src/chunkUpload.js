@@ -1,4 +1,5 @@
 import { apiRequest, apiUploadRequest } from './api'
+import SparkMD5 from 'spark-md5'
 
 const CHUNK_SIZE = 5 * 1024 * 1024
 const UPLOAD_CONCURRENCY = 3
@@ -99,6 +100,71 @@ export async function uploadVideoInChunks(file, onProgress = () => {}, signal) {
 
   const totalBytes = file.size
   const totalChunks = Math.ceil(totalBytes / CHUNK_SIZE)
+  const contentHash = await calculateFileMd5(file, signal, completedBytes => {
+    onProgress({
+      phase: 'hashing',
+      completedChunks: 0,
+      totalChunks,
+      uploadedBytes: 0,
+      totalBytes,
+      percent: Math.min(100, Math.round((completedBytes / totalBytes) * 100)),
+      bytesPerSecond: null,
+      etaSeconds: null,
+      retryingCount: 0,
+      retryAttempt: 0,
+      retryMaxAttempts: CHUNK_MAX_ATTEMPTS
+    })
+  })
+  onProgress({
+    phase: 'checking_duplicate',
+    completedChunks: 0,
+    totalChunks,
+    uploadedBytes: 0,
+    totalBytes,
+    percent: 0,
+    bytesPerSecond: null,
+    etaSeconds: null,
+    retryingCount: 0,
+    retryAttempt: 0,
+    retryMaxAttempts: CHUNK_MAX_ATTEMPTS
+  })
+  const duplicateParams = new URLSearchParams({ contentHash })
+  const duplicateResponse = await requestWithTimeout(`/media/duplicate?${duplicateParams}`, { signal })
+  if (!duplicateResponse.ok) {
+    throw new Error(await readErrorText(duplicateResponse) || '无法检查是否已存在该视频；尚未开始上传，请稍后重试')
+  }
+  const duplicate = await duplicateResponse.json()
+  if (duplicate?.id) {
+    forgetUploadProgress(file)
+    onProgress({
+      phase: 'duplicate',
+      completedChunks: totalChunks,
+      totalChunks,
+      uploadedBytes: totalBytes,
+      totalBytes,
+      percent: 100,
+      bytesPerSecond: null,
+      etaSeconds: null,
+      retryingCount: 0,
+      retryAttempt: 0,
+      retryMaxAttempts: CHUNK_MAX_ATTEMPTS
+    })
+    return { ...duplicate, deduplicated: true }
+  }
+
+  onProgress({
+    phase: 'initializing',
+    completedChunks: 0,
+    totalChunks,
+    uploadedBytes: 0,
+    totalBytes,
+    percent: 0,
+    bytesPerSecond: null,
+    etaSeconds: null,
+    retryingCount: 0,
+    retryAttempt: 0,
+    retryMaxAttempts: CHUNK_MAX_ATTEMPTS
+  })
   const { uploadId, uploadedChunks } = await resolveUploadSession(file, totalChunks, signal)
 
   const pendingChunks = []
@@ -200,6 +266,24 @@ export async function uploadVideoInChunks(file, onProgress = () => {}, signal) {
   const media = await response.json()
   forgetUploadProgress(file)
   return media
+}
+
+async function calculateFileMd5(file, signal, onProgress) {
+  const hash = new SparkMD5.ArrayBuffer()
+  const hashChunkBytes = 4 * 1024 * 1024
+  try {
+    for (let start = 0; start < file.size; start += hashChunkBytes) {
+      throwIfAborted(signal)
+      const end = Math.min(file.size, start + hashChunkBytes)
+      const buffer = await file.slice(start, end).arrayBuffer()
+      throwIfAborted(signal)
+      hash.append(buffer)
+      onProgress(end)
+    }
+    return hash.end()
+  } finally {
+    hash.destroy()
+  }
 }
 
 /**

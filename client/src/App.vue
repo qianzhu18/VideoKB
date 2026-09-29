@@ -714,7 +714,7 @@ const uploadQueue = ref([])
 const queueStatusLabel = item => ({
   queued: '排队中',
   uploading: '上传中',
-  done: '✓ 完成',
+  done: item.message ? `✓ ${item.message}` : '✓ 完成',
   failed: item.message ? `✗ ${item.message}` : '✗ 失败',
   skipped: `— ${item.message || '已跳过'}`
 }[item.status] || item.status)
@@ -780,7 +780,7 @@ const runUploadQueue = async () => {
       const result = await uploadFile()
       if (result.ok) {
         item.status = 'done'
-        item.message = ''
+        item.message = result.media?.deduplicated ? '已存在，跳过上传' : ''
         succeeded += 1
         lastMedia = result.media
         // 批量场景与目录导入同语义：传完即用默认目标排队分析（RocketMQ 异步，
@@ -825,7 +825,9 @@ const runUploadQueue = async () => {
   if (queue.length === 1) {
     const only = queue[0]
     if (only.status === 'done') {
-      showMsg(`✅ ${only.name} 上传完成，已自动开始解析`)
+      showMsg(only.message
+        ? `✅ ${only.name} 已存在，跳过重复上传并复用原记录`
+        : `✅ ${only.name} 上传完成，已自动开始解析`)
     } else if (only.status === 'failed' && !only.message?.includes('已取消')) {
       showMsg(`❌ 上传失败：${only.message || '未知错误'}`, true)
     } else if (only.status === 'failed') {
@@ -868,15 +870,32 @@ const buildUploadWarning = progress => {
 const applyUploadProgress = progress => {
   lastUploadProgress = progress
   const merging = progress.phase === 'merging'
-  const detail = [`${formatBytes(progress.uploadedBytes)} / ${formatBytes(progress.totalBytes)}`]
-  detail.push(`分片 ${progress.completedChunks}/${progress.totalChunks}`)
-  if (!merging && progress.bytesPerSecond) {
+  const hashing = progress.phase === 'hashing'
+  const checkingDuplicate = progress.phase === 'checking_duplicate'
+  const duplicate = progress.phase === 'duplicate'
+  const preparing = progress.phase === 'initializing'
+  const detail = hashing
+    ? [`正在本地计算文件指纹 ${progress.percent}%`, `已上传 0 B / ${formatBytes(progress.totalBytes)}`]
+    : checkingDuplicate
+      ? ['正在检查当前账号已有的视频记录', `已上传 0 B / ${formatBytes(progress.totalBytes)}`]
+      : duplicate
+        ? ['检测到相同文件，未重复传输', '正在复用已保存的视频记录']
+        : preparing
+          ? ['未发现重复文件，正在准备上传任务', `0 B / ${formatBytes(progress.totalBytes)}`]
+          : [`${formatBytes(progress.uploadedBytes)} / ${formatBytes(progress.totalBytes)}`]
+  if (!hashing && !checkingDuplicate && !duplicate && !preparing) detail.push(`分片 ${progress.completedChunks}/${progress.totalChunks}`)
+  if (!merging && !hashing && !checkingDuplicate && !duplicate && !preparing && progress.bytesPerSecond) {
     detail.push(`${formatBytes(progress.bytesPerSecond)}/s`)
     const eta = formatDurationText(progress.etaSeconds)
     if (eta) detail.push(`剩余约 ${eta}`)
   }
   uploadProgress.value = {
-    label: merging ? '分片已全部送达，正在服务端合并' : '正在安全上传',
+    label: merging ? '分片已全部送达，正在服务端合并'
+      : hashing ? '正在本地检查文件是否已入库'
+        : checkingDuplicate ? '正在查询已有视频，尚未开始上传'
+          : duplicate ? '已存在相同视频，跳过上传'
+            : preparing ? '正在准备分片上传'
+              : '正在安全上传',
     filename: file.value?.name || uploadProgress.value.filename,
     percent: progress.percent,
     detail: detail.join(' · '),
@@ -932,6 +951,9 @@ const uploadFile = async () => {
     if (currentUser.value?.id !== uploadUserId) return { ok: false, skipped: true }
     resumableFile.value = null
     await fetchList({ notify: true })
+    if (uploadedMedia.deduplicated) {
+      showMsg(`“${target.name}”已存在，已跳过重复上传并复用原记录`)
+    }
     openAnalysisProgress(uploadedMedia)
     return { ok: true, media: uploadedMedia }
   } catch (error) {
