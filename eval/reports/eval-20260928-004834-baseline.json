@@ -1,0 +1,131 @@
+{
+  "generatedAt": "2026-09-28T00:36:58+0800",
+  "label": "baseline",
+  "manifest": {
+    "golden": "eval/golden-v2.json",
+    "goldenMd5": "0129bcecaf707980aa224afe61bb0564",
+    "spaceId": 12,
+    "caseCount": 31,
+    "llmModel": "deepseek-ai/DeepSeek-V3.2",
+    "embeddingModel": "BAAI/bge-m3",
+    "mode": "both",
+    "strategies": [
+      "vector",
+      "keyword",
+      "hybrid"
+    ],
+    "ks": [
+      1,
+      3,
+      5
+    ]
+  },
+  "gates": {
+    "mediaRecallAt5": 0.6,
+    "keywordCoverage": 0.5,
+    "refusalCorrectRate": 1.0,
+    "citationValidRate": 0.8
+  },
+  "search": {
+    "vector": {
+      "recallAtK": {
+        "1": 0.92,
+        "3": 0.92,
+        "5": 0.92
+      },
+      "mrr": 0.92,
+      "refusalCorrectRate": 0.0,
+      "refusalCorrect": "0/6",
+      "p50LatencyMs": 183.4,
+      "p95LatencyMs": 795.0,
+      "answerableMisses": [
+        "kb-003",
+        "x-05"
+      ],
+      "falsePositives": [
+        "kb-101",
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r1",
+        "x-r2"
+      ]
+    },
+    "keyword": {
+      "recallAtK": {
+        "1": 0.6,
+        "3": 0.68,
+        "5": 0.68
+      },
+      "mrr": 0.6333,
+      "refusalCorrectRate": 0.3333,
+      "refusalCorrect": "2/6",
+      "p50LatencyMs": 13.0,
+      "p95LatencyMs": 19.8,
+      "answerableMisses": [
+        "kb-003",
+        "kb-004",
+        "kb-006",
+        "kb-009",
+        "x-04",
+        "x-08",
+        "x-12",
+        "x-cv2"
+      ],
+      "falsePositives": [
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r2"
+      ]
+    },
+    "hybrid": {
+      "recallAtK": {
+        "1": 0.84,
+        "3": 0.96,
+        "5": 0.96
+      },
+      "mrr": 0.8933,
+      "refusalCorrectRate": 0.0,
+      "refusalCorrect": "0/6",
+      "p50LatencyMs": 214.4,
+      "p95LatencyMs": 1150.1,
+      "answerableMisses": [
+        "kb-003"
+      ],
+      "falsePositives": [
+        "kb-101",
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r1",
+        "x-r2"
+      ]
+    }
+  },
+  "ask": {
+    "answerableCorrectRate": 0.6,
+    "answerableCorrect": "15/25",
+    "refusalCorrectRate": 1.0,
+    "refusalCorrect": "6/6",
+    "citationValidRate": 1.0,
+    "citationValid": "59/59",
+    "keywordCoverage": 0.5867,
+    "p50LatencyMs": 18188.0,
+    "p95LatencyMs": 44617.8,
+    "answerableMisses": [
+      "kb-001",
+      "kb-003",
+      "kb-004",
+      "kb-005",
+      "kb-008",
+      "kb-010",
+      "x-01",
+      "x-05",
+      "x-10",
+      "x-12"
+    ],
+    "falsePositives": []
+  },
+  "gateResults": "PASS"
+}

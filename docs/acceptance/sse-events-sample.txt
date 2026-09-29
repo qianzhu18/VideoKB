@@ -1,0 +1,3 @@
+event:task-status
+data:{"state":"FAILED","result":null,"message":"Agent 已达到本次任务预算，请调整目标后重试","stage":"BUDGET_EXHAUSTED"}
+

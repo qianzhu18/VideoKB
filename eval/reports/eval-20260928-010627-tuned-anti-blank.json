@@ -1,0 +1,543 @@
+{
+  "generatedAt": "2026-09-28T00:53:42+0800",
+  "label": "tuned-anti-blank",
+  "manifest": {
+    "golden": "eval/golden-v2.json",
+    "goldenMd5": "be210367fa1d665037a442fb11c1d1d2",
+    "spaceId": 12,
+    "caseCount": 31,
+    "llmModel": "deepseek-ai/DeepSeek-V3.2",
+    "embeddingModel": "BAAI/bge-m3",
+    "mode": "both",
+    "strategies": [
+      "vector",
+      "keyword",
+      "hybrid"
+    ],
+    "ks": [
+      1,
+      3,
+      5
+    ]
+  },
+  "gates": {
+    "mediaRecallAt5": 0.6,
+    "keywordCoverage": 0.5,
+    "refusalCorrectRate": 1.0,
+    "citationValidRate": 0.8
+  },
+  "search": {
+    "vector": {
+      "recallAtK": {
+        "1": 0.96,
+        "3": 0.96,
+        "5": 0.96
+      },
+      "mrr": 0.96,
+      "refusalCorrectRate": 0.0,
+      "refusalCorrect": "0/6",
+      "p50LatencyMs": 179.2,
+      "p95LatencyMs": 441.5,
+      "answerableMisses": [
+        "x-05"
+      ],
+      "falsePositives": [
+        "kb-101",
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r1",
+        "x-r2"
+      ]
+    },
+    "keyword": {
+      "recallAtK": {
+        "1": 0.6,
+        "3": 0.68,
+        "5": 0.68
+      },
+      "mrr": 0.6333,
+      "refusalCorrectRate": 0.3333,
+      "refusalCorrect": "2/6",
+      "p50LatencyMs": 14.3,
+      "p95LatencyMs": 21.2,
+      "answerableMisses": [
+        "kb-003",
+        "kb-004",
+        "kb-006",
+        "kb-009",
+        "x-04",
+        "x-08",
+        "x-12",
+        "x-cv2"
+      ],
+      "falsePositives": [
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r2"
+      ]
+    },
+    "hybrid": {
+      "recallAtK": {
+        "1": 0.88,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "mrr": 0.9333,
+      "refusalCorrectRate": 0.0,
+      "refusalCorrect": "0/6",
+      "p50LatencyMs": 196.1,
+      "p95LatencyMs": 441.4,
+      "answerableMisses": [],
+      "falsePositives": [
+        "kb-101",
+        "kb-102",
+        "kb-103",
+        "kb-104",
+        "x-r1",
+        "x-r2"
+      ]
+    }
+  },
+  "ask": {
+    "answerableCorrectRate": 0.68,
+    "answerableCorrect": "17/25",
+    "refusalCorrectRate": 1.0,
+    "refusalCorrect": "6/6",
+    "citationValidRate": 1.0,
+    "citationValid": "65/65",
+    "keywordCoverage": 0.64,
+    "p50LatencyMs": 21412.1,
+    "p95LatencyMs": 48315.3,
+    "answerableMisses": [
+      "kb-001",
+      "kb-005",
+      "kb-008",
+      "x-01",
+      "x-05",
+      "x-07",
+      "x-11",
+      "x-12"
+    ],
+    "falsePositives": [],
+    "caseDetails": [
+      {
+        "id": "kb-001",
+        "question": "三次握手为什么不能是两次,四次挥手为什么要 TIME_WAIT",
+        "expectedMediaIds": [
+          22
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 48315
+      },
+      {
+        "id": "kb-002",
+        "question": "MVCC 是什么,怎么解决脏读和幻读",
+        "expectedMediaIds": [
+          17
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          17
+        ],
+        "latencyMs": 29763
+      },
+      {
+        "id": "kb-003",
+        "question": "缓存穿透和缓存雪崩分别怎么解决",
+        "expectedMediaIds": [
+          21,
+          24
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          24
+        ],
+        "latencyMs": 23885
+      },
+      {
+        "id": "kb-004",
+        "question": "进程和线程的区别,死锁产生的条件是什么",
+        "expectedMediaIds": [
+          15
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          15,
+          25
+        ],
+        "latencyMs": 25428
+      },
+      {
+        "id": "kb-005",
+        "question": "HashMap 在并发下为什么线程不安全,应该用什么替代",
+        "expectedMediaIds": [
+          16,
+          25
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 5554
+      },
+      {
+        "id": "kb-006",
+        "question": "线程池的核心参数有哪些,拒绝策略怎么选",
+        "expectedMediaIds": [
+          25
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          25
+        ],
+        "latencyMs": 61560
+      },
+      {
+        "id": "kb-007",
+        "question": "Spring 的循环依赖是怎么解决的",
+        "expectedMediaIds": [
+          14
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          14
+        ],
+        "latencyMs": 47003
+      },
+      {
+        "id": "kb-008",
+        "question": "Kafka 怎么保证消息不丢失,重复消费怎么处理",
+        "expectedMediaIds": [
+          20
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 11671
+      },
+      {
+        "id": "kb-009",
+        "question": "分布式锁在项目里怎么实现的",
+        "expectedMediaIds": [
+          24,
+          21
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          21
+        ],
+        "latencyMs": 48196
+      },
+      {
+        "id": "kb-010",
+        "question": "RAG 和向量检索、大模型微调分别是什么关系",
+        "expectedMediaIds": [
+          23
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          23
+        ],
+        "latencyMs": 29304
+      },
+      {
+        "id": "kb-101",
+        "question": "Kubernetes 的调度器是怎么工作的",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 7892
+      },
+      {
+        "id": "kb-102",
+        "question": "Go 语言的 GMP 调度模型是什么",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 6057
+      },
+      {
+        "id": "kb-103",
+        "question": "React Hooks 的使用规则有哪些",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 8584
+      },
+      {
+        "id": "kb-104",
+        "question": "Python 的 GIL 全局解释器锁是什么原理",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 9720
+      },
+      {
+        "id": "x-01",
+        "question": "HTTPS 和 HTTP 的区别是什么？",
+        "expectedMediaIds": [
+          22
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 13668
+      },
+      {
+        "id": "x-02",
+        "question": "MySQL 的事务隔离级别有哪些？默认是哪一个？",
+        "expectedMediaIds": [
+          17
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          14,
+          17
+        ],
+        "latencyMs": 24017
+      },
+      {
+        "id": "x-03",
+        "question": "Redis 的 RDB 和 AOF 两种持久化方式各有什么优缺点？",
+        "expectedMediaIds": [
+          21
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          21
+        ],
+        "latencyMs": 39082
+      },
+      {
+        "id": "x-04",
+        "question": "什么是虚拟内存？它解决了什么问题？",
+        "expectedMediaIds": [
+          15
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          15
+        ],
+        "latencyMs": 49331
+      },
+      {
+        "id": "x-05",
+        "question": "ConcurrentHashMap 是怎么保证线程安全的？",
+        "expectedMediaIds": [
+          16
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 6117
+      },
+      {
+        "id": "x-06",
+        "question": "volatile 关键字的作用是什么？",
+        "expectedMediaIds": [
+          25
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          25
+        ],
+        "latencyMs": 21412
+      },
+      {
+        "id": "x-07",
+        "question": "Spring 的 IOC 和 AOP 分别是什么？",
+        "expectedMediaIds": [
+          14
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 5465
+      },
+      {
+        "id": "x-08",
+        "question": "消息队列怎么帮系统削峰填谷？",
+        "expectedMediaIds": [
+          20
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          20
+        ],
+        "latencyMs": 30721
+      },
+      {
+        "id": "x-09",
+        "question": "MyBatis 的一级缓存和二级缓存有什么区别？",
+        "expectedMediaIds": [
+          18
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          18
+        ],
+        "latencyMs": 18435
+      },
+      {
+        "id": "x-10",
+        "question": "JVM 的 G1 垃圾收集器有什么特点？",
+        "expectedMediaIds": [
+          13
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          13
+        ],
+        "latencyMs": 29944
+      },
+      {
+        "id": "x-11",
+        "question": "苍穹外卖项目里 JWT 登录是怎么做的？",
+        "expectedMediaIds": [
+          19
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 12273
+      },
+      {
+        "id": "x-12",
+        "question": "黑马点评的点赞功能是怎么实现的？",
+        "expectedMediaIds": [
+          24
+        ],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 17687
+      },
+      {
+        "id": "x-13",
+        "question": "Transformer 的注意力机制是怎么回事？",
+        "expectedMediaIds": [
+          23
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          23
+        ],
+        "latencyMs": 21000
+      },
+      {
+        "id": "x-cv1",
+        "question": "做外卖或点评这类项目时，Redis 缓存一般怎么用？有哪些常见套路？",
+        "expectedMediaIds": [
+          19,
+          24,
+          21
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          19,
+          21
+        ],
+        "latencyMs": 42941
+      },
+      {
+        "id": "x-cv2",
+        "question": "消息队列在电商类项目里一般怎么用？",
+        "expectedMediaIds": [
+          20,
+          19,
+          24
+        ],
+        "answerability": "SUPPORTED",
+        "warnings": [],
+        "citationMediaIds": [
+          20
+        ],
+        "latencyMs": 37572
+      },
+      {
+        "id": "x-r1",
+        "question": "Docker 的网络模式有哪些？各自的原理是什么？",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 6980
+      },
+      {
+        "id": "x-r2",
+        "question": "Kotlin 协程和 Go 的 goroutine 有什么区别？",
+        "expectedMediaIds": [],
+        "answerability": "INSUFFICIENT_EVIDENCE",
+        "warnings": [
+          "仅返回带有服务端验证的 segmentId 和原文 quote 的回答。",
+          "模型自身判定证据不足。"
+        ],
+        "citationMediaIds": [],
+        "latencyMs": 9413
+      }
+    ]
+  },
+  "gateResults": "PASS"
+}

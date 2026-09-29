@@ -1,0 +1,359 @@
+{
+ "name": "bilibili-mianshi-kb-v2",
+ "description": "空间12(技术面试知识库)跨视频检索评测集：归档14条(mediaId已映射) + 每期单期精确题13条 + 跨视频题2条 + 域外拒答2条。出题锚点=归档technical-learning-v1 manifest的expectedKeywords。",
+ "schemaVersion": 2,
+ "spaceId": 12,
+ "defaultK": 5,
+ "gates": {
+  "mediaRecallAt5": 0.6,
+  "keywordCoverage": 0.5,
+  "refusalCorrectRate": 1.0,
+  "citationValidRate": 0.8
+ },
+ "cases": [
+  {
+   "id": "kb-001",
+   "question": "三次握手为什么不能是两次,四次挥手为什么要 TIME_WAIT",
+   "expectedMediaIds": [
+    22
+   ],
+   "expectedKeywords": [
+    "三次握手",
+    "四次挥手"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-002",
+   "question": "MVCC 是什么,怎么解决脏读和幻读",
+   "expectedMediaIds": [
+    17
+   ],
+   "expectedKeywords": [
+    "MVCC",
+    "事务"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-003",
+   "question": "缓存穿透和缓存雪崩分别怎么解决",
+   "expectedMediaIds": [
+    21,
+    24
+   ],
+   "expectedKeywords": [
+    "缓存穿透",
+    "缓存雪崩"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-004",
+   "question": "进程和线程的区别,死锁产生的条件是什么",
+   "expectedMediaIds": [
+    15
+   ],
+   "expectedKeywords": [
+    "进程",
+    "线程",
+    "死锁"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-005",
+   "question": "HashMap 在并发下为什么线程不安全,应该用什么替代",
+   "expectedMediaIds": [
+    16,
+    25
+   ],
+   "expectedKeywords": [
+    "HashMap",
+    "ConcurrentHashMap"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-006",
+   "question": "线程池的核心参数有哪些,拒绝策略怎么选",
+   "expectedMediaIds": [
+    25
+   ],
+   "expectedKeywords": [
+    "线程池",
+    "拒绝策略"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-007",
+   "question": "Spring 的循环依赖是怎么解决的",
+   "expectedMediaIds": [
+    14
+   ],
+   "expectedKeywords": [
+    "循环依赖",
+    "IOC"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-008",
+   "question": "Kafka 怎么保证消息不丢失,重复消费怎么处理",
+   "expectedMediaIds": [
+    20
+   ],
+   "expectedKeywords": [
+    "Kafka",
+    "重复消费"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-009",
+   "question": "分布式锁在项目里怎么实现的",
+   "expectedMediaIds": [
+    24,
+    21
+   ],
+   "expectedKeywords": [
+    "分布式锁"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-010",
+   "question": "RAG 和向量检索、大模型微调分别是什么关系",
+   "expectedMediaIds": [
+    23
+   ],
+   "expectedKeywords": [
+    "RAG",
+    "向量",
+    "微调"
+   ],
+   "k": 5
+  },
+  {
+   "id": "kb-101",
+   "question": "Kubernetes 的调度器是怎么工作的",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  },
+  {
+   "id": "kb-102",
+   "question": "Go 语言的 GMP 调度模型是什么",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  },
+  {
+   "id": "kb-103",
+   "question": "React Hooks 的使用规则有哪些",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  },
+  {
+   "id": "kb-104",
+   "question": "Python 的 GIL 全局解释器锁是什么原理",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  },
+  {
+   "id": "x-01",
+   "question": "HTTPS 和 HTTP 的区别是什么？",
+   "expectedMediaIds": [
+    22
+   ],
+   "expectedKeywords": [
+    "HTTPS"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-02",
+   "question": "MySQL 的事务隔离级别有哪些？默认是哪一个？",
+   "expectedMediaIds": [
+    17
+   ],
+   "expectedKeywords": [
+    "隔离级别",
+    "事务"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-03",
+   "question": "Redis 的 RDB 和 AOF 两种持久化方式各有什么优缺点？",
+   "expectedMediaIds": [
+    21
+   ],
+   "expectedKeywords": [
+    "RDB",
+    "AOF",
+    "持久化"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-04",
+   "question": "什么是虚拟内存？它解决了什么问题？",
+   "expectedMediaIds": [
+    15
+   ],
+   "expectedKeywords": [
+    "虚拟内存"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-05",
+   "question": "ConcurrentHashMap 是怎么保证线程安全的？",
+   "expectedMediaIds": [
+    16
+   ],
+   "expectedKeywords": [
+    "ConcurrentHashMap"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-06",
+   "question": "volatile 关键字的作用是什么？",
+   "expectedMediaIds": [
+    25
+   ],
+   "expectedKeywords": [
+    "volatile"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-07",
+   "question": "Spring 的 IOC 和 AOP 分别是什么？",
+   "expectedMediaIds": [
+    14
+   ],
+   "expectedKeywords": [
+    "IOC",
+    "AOP"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-08",
+   "question": "消息队列怎么帮系统削峰填谷？",
+   "expectedMediaIds": [
+    20
+   ],
+   "expectedKeywords": [
+    "削峰"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-09",
+   "question": "MyBatis 的一级缓存和二级缓存有什么区别？",
+   "expectedMediaIds": [
+    18
+   ],
+   "expectedKeywords": [
+    "一级缓存",
+    "二级缓存"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-10",
+   "question": "JVM 的 G1 垃圾收集器有什么特点？",
+   "expectedMediaIds": [
+    13
+   ],
+   "expectedKeywords": [
+    "G1",
+    "垃圾回收"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-11",
+   "question": "苍穹外卖项目里 JWT 登录是怎么做的？",
+   "expectedMediaIds": [
+    19
+   ],
+   "expectedKeywords": [
+    "JWT",
+    "苍穹外卖"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-12",
+   "question": "黑马点评的点赞功能是怎么实现的？",
+   "expectedMediaIds": [
+    24
+   ],
+   "expectedKeywords": [
+    "点赞",
+    "黑马点评"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-13",
+   "question": "Transformer 的注意力机制是怎么回事？",
+   "expectedMediaIds": [
+    23
+   ],
+   "expectedKeywords": [
+    "Transformer",
+    "注意力机制"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-cv1",
+   "question": "做外卖或点评这类项目时，Redis 缓存一般怎么用？有哪些常见套路？",
+   "expectedMediaIds": [
+    19,
+    24,
+    21
+   ],
+   "expectedKeywords": [
+    "缓存"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-cv2",
+   "question": "消息队列在电商类项目里一般怎么用？",
+   "expectedMediaIds": [
+    20,
+    19,
+    24
+   ],
+   "expectedKeywords": [
+    "消息队列"
+   ],
+   "k": 5
+  },
+  {
+   "id": "x-r1",
+   "question": "Docker 的网络模式有哪些？各自的原理是什么？",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  },
+  {
+   "id": "x-r2",
+   "question": "Kotlin 协程和 Go 的 goroutine 有什么区别？",
+   "expectedMediaIds": [],
+   "expectedKeywords": [],
+   "k": 5
+  }
+ ]
+}

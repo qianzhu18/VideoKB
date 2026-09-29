@@ -1,0 +1,44 @@
+{
+  "spaceId": 6,
+  "description": "DoVideo knowledge golden set v1: 3 demo videos (media 5 曼波 dog commands, media 6 佐助 anime clip, media 7 Area.mp4 OCR-text-only). 24 answerable cases + 6 unanswerable cases. Expected evidence = mediaId + time-range overlap.",
+  "topK": 5,
+  "cases": [
+    {"id": 1, "question": "哪条视频里出现了前进和后退的口令？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 2, "question": "视频里让狗做了哪些动作？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 3, "question": "哪段视频出现了坐下和趴下？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 4, "question": "按摩和摸摸头出现在哪条视频的哪一段？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 5, "question": "哪条视频里有人跳舞？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 6, "question": "打火机出现在哪条视频的哪一段？", "expectMediaId": 5, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 7, "question": "哪段视频提到成年人拒绝诱惑？", "expectMediaId": 5, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 8, "question": "「你咋了」这句台词出自哪条视频？", "expectMediaId": 5, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 9, "question": "佐助那条视频的开头说了什么？", "expectMediaId": 6, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 10, "question": "哪段视频里出现了「斯贝德」这个词？", "expectMediaId": 6, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 11, "question": "视频里提到「吃了」是在哪一段？", "expectMediaId": 6, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 12, "question": "哪段视频提到了颜面？", "expectMediaId": 6, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 13, "question": "佐助视频的后半段讲了什么？", "expectMediaId": 6, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 14, "question": "哪条视频的画面里出现了「回到证据」的文字？", "expectMediaId": 7, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 15, "question": "画面上有 MSR 字样的是哪条视频？", "expectMediaId": 7, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 16, "question": "哪段视频的画面文字提到了研究结论？", "expectMediaId": 7, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 17, "question": "哪条视频的画面里出现过 boxClipToRectangle 报错？", "expectMediaId": 7, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 18, "question": "这些视频里出现过哪些角色？", "expectAny": [
+      {"mediaId": 5, "startMs": 0, "endMs": 60000},
+      {"mediaId": 6, "startMs": 0, "endMs": 60000}
+    ]},
+    {"id": 19, "question": "曼波是什么？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 20, "question": "有没有视频里出现了快速前进这个指令？", "expectMediaId": 5, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 21, "question": "哪条视频里能找到滚这个动作？", "expectMediaId": 5, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 22, "question": "佐助视频里提到扣扣是哪一段？", "expectMediaId": 6, "expectStartMs": 60000, "expectEndMs": 120000},
+    {"id": 23, "question": "哪条视频的画面文字最多？", "expectMediaId": 7, "expectStartMs": 0, "expectEndMs": 60000},
+    {"id": 24, "question": "这几条视频分别讲了什么？", "expectAny": [
+      {"mediaId": 5, "startMs": 0, "endMs": 60000},
+      {"mediaId": 6, "startMs": 0, "endMs": 60000},
+      {"mediaId": 7, "startMs": 0, "endMs": 60000}
+    ]},
+    {"id": 25, "question": "视频里有没有讲 Redis 缓存击穿？", "expectEmpty": true},
+    {"id": 26, "question": "有没有提到 JVM GC 调优？", "expectEmpty": true},
+    {"id": 27, "question": "有没有讲红烧肉怎么做？", "expectEmpty": true},
+    {"id": 28, "question": "有没有提到 Spring Boot 的内容？", "expectEmpty": true},
+    {"id": 29, "question": "视频里有没有人讲英语语法？", "expectEmpty": true},
+    {"id": 30, "question": "有没有关于旅游攻略的内容？", "expectEmpty": true}
+  ]
+}

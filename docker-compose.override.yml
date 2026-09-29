@@ -1,0 +1,24 @@
+# 本地覆盖(macOS Docker Desktop):
+# 1. 宿主机 6379 已被本机 Redis 占用,容器 Redis 改用 6380(.env 中 REDIS_PORT=6380)
+# 2. RocketMQ 命名卷默认 root 属主,容器内 uid 3000 无写权限导致 broker 退出(253),
+#    启动前用 root 用户修正卷属主
+services:
+  redis:
+    ports: !override
+      - "127.0.0.1:6380:6379"
+
+  rmq-volume-init:
+    image: apache/rocketmq:5.3.4
+    user: root
+    entrypoint: ["sh", "-c", "chown -R 3000:3000 /store /logs"]
+    volumes:
+      - rocketmq-store:/store
+      - rocketmq-logs:/logs
+    restart: "no"
+
+  rmqbroker:
+    depends_on: !override
+      rmqnamesrv:
+        condition: service_started
+      rmq-volume-init:
+        condition: service_completed_successfully
