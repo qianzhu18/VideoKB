@@ -66,6 +66,45 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 #app .upload-wrapper { width: 100%; max-width: none; margin: 0; perspective: none; opacity: 1; animation: none; }
 #app .upload-magnet { height: 196px; overflow: hidden; border: 1px solid #e2e2e4; border-radius: 14px; background: #fff; box-shadow: 0 2px 8px rgba(20,20,22,.025); transition: border-color .18s ease, box-shadow .18s ease; }
 #app .upload-magnet:hover { transform: none; border-color: #c9c9cc; box-shadow: 0 8px 20px rgba(20,20,22,.06); }
+#app .upload-magnet.processing { height: auto; min-height: 196px; overflow: visible; cursor: default; }
+#app .upload-magnet.processing:hover { border-color: #e2e2e4; box-shadow: 0 2px 8px rgba(20,20,22,.025); }
+#app .magnet-content.busy {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "loader title actions"
+    "loader file actions"
+    "progress progress progress"
+    "detail detail detail"
+    "warning warning warning"
+    "queue queue queue";
+  align-content: center;
+  justify-content: initial;
+  align-items: center;
+  gap: 7px 14px;
+  width: 100%;
+  height: auto;
+  min-height: 194px;
+  padding: 22px 24px;
+  background: #fff;
+  text-align: left;
+}
+#app .magnet-content.busy .quantum-loader { grid-area: loader; width: 26px; height: 26px; margin: 0; border-width: 2px; box-shadow: none; }
+#app .magnet-content.busy .busy-text { grid-area: title; margin: 0; color: #28282a; font: 550 .92rem/1.4 var(--font-ui); animation: none; }
+#app .magnet-content.busy .busy-file { grid-area: file; max-width: 100%; min-width: 0; margin: 0; color: #77777b; font: 400 .78rem/1.45 var(--font-ui); }
+#app .magnet-content.busy .upload-progress { grid-area: progress; width: 100%; height: 5px; margin: 8px 0 0; border-radius: 999px; background: #ededee; }
+#app .magnet-content.busy .upload-progress span { border-radius: inherit; background: #353538; }
+#app .magnet-content.busy .busy-stat { grid-area: detail; max-width: none; margin: 0; color: #77777b; font: 400 .73rem/1.4 var(--font-mono); text-align: left; }
+#app .magnet-content.busy .busy-warning { grid-area: warning; max-width: none; margin: 0; color: #a44640; font: 400 .76rem/1.5 var(--font-ui); text-align: left; }
+#app .magnet-content.busy .upload-queue { grid-area: queue; width: 100%; max-width: none; max-height: 132px; margin: 4px 0 0; border-color: #e6e6e8; border-radius: 8px; }
+#app .magnet-content.busy .upload-queue-item { align-items: center; min-height: 34px; padding: 7px 10px; border-color: #ededee; font: 400 .75rem/1.4 var(--font-ui); }
+#app .magnet-content.busy .upload-queue-item .queue-status { color: #707075; font: 500 .72rem/1.4 var(--font-ui); }
+#app .magnet-content.busy .upload-queue-item.done .queue-status { color: #34734d; }
+#app .magnet-content.busy .upload-queue-item.failed .queue-status { color: #a44640; }
+#app .magnet-content.busy .upload-queue-item.uploading .queue-status { color: #655522; }
+#app .magnet-content.busy .busy-actions { grid-area: actions; justify-self: end; margin: 0; }
+#app .magnet-content.busy .busy-actions button { min-height: 34px; padding: 0 11px; border-color: #e0e0e2; border-radius: 7px; color: #67676b; font: 450 .76rem/1 var(--font-ui); }
+#app .magnet-content.busy .busy-actions button:hover { border-color: #d5b8b6; background: #fff8f7; color: #984c47; }
 #app .split-container { overflow: hidden; }
 #app .split-container:not(:has(.magnet-content.busy)) { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
 #app .skew-pane { transform: none; background: #fff; }
@@ -322,6 +361,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   #app .hero-section { margin-bottom: 32px; }
   #app .slogan-sub { margin-bottom: 18px; }
   #app .upload-magnet { height: auto; min-height: 290px; }
+  #app .upload-magnet.processing { min-height: 0; }
+  #app .magnet-content.busy { grid-template-columns: 28px minmax(0, 1fr); grid-template-areas: "loader title" "loader file" "progress progress" "detail detail" "warning warning" "queue queue" "actions actions"; gap: 8px 11px; min-height: 188px; padding: 18px; }
+  #app .magnet-content.busy .busy-actions { justify-self: end; }
   #app .split-container { flex-direction: column; }
   #app .split-container:not(:has(.magnet-content.busy)) { display: flex; }
   #app .skew-pane { min-height: 145px; }
