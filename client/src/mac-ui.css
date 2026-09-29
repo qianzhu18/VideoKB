@@ -290,7 +290,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 #app .knowledge-answer-markdown input[type="checkbox"] { width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; accent-color: #333; }
 
 /* Keep the answer visible while its cited video is inspected */
-#app .knowledge-preview-backdrop { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 28px; background: rgba(24,24,26,.38); backdrop-filter: blur(12px); }
+#app .knowledge-preview-backdrop { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 28px; background: rgba(24,24,26,.38); }
 #app .knowledge-preview-dialog { width: min(960px, 100%); overflow: hidden; border: 1px solid rgba(255,255,255,.65); border-radius: 16px; background: #fff; box-shadow: 0 24px 80px rgba(0,0,0,.22); }
 #app .knowledge-preview-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 19px; border-bottom: 1px solid #e8e8ea; }
 #app .knowledge-preview-header p { margin-bottom: 4px; color: #858589; font: 500 .68rem/1.2 var(--font-ui); }
@@ -304,8 +304,9 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 #app .knowledge-preview-footer { display: flex; justify-content: space-between; gap: 12px; padding: 10px 18px; color: #77777b; font: 400 .68rem/1.4 var(--font-ui); }
 
 /* Existing analysis side panel and login dialog follow the same material */
-#app .sidebar-backdrop, #app .auth-backdrop { background: rgba(24,24,26,.34); backdrop-filter: blur(12px); }
+#app .sidebar-backdrop, #app .auth-backdrop { background: rgba(24,24,26,.22); }
 #app .sidebar-panel { right: -920px; border-left: 1px solid #e2e2e4; background: #fff; box-shadow: -12px 0 40px rgba(0,0,0,.12); }
+#app .sidebar-panel.is-open { right: 0; }
 #app .sidebar-header, #app .auth-header { background: rgba(255,255,255,.94); border-color: #e5e5e7; }
 #app .sidebar-title, #app .auth-title { color: #222; font-family: var(--font-ui); }
 #app .sidebar-title .icon { color: #555; }

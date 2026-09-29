@@ -715,7 +715,19 @@ function resetState() {
 }
 
 async function request(path, options) {
-  const response = await apiRequest(path, options)
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 45_000)
+  let response
+  try {
+    response = await apiRequest(path, { ...options, signal: options?.signal || controller.signal })
+  } catch (cause) {
+    if (controller.signal.aborted && !options?.signal?.aborted) {
+      throw new Error('请求超过 45 秒仍未完成，请检查后端连接后重试')
+    }
+    throw cause
+  } finally {
+    clearTimeout(timeout)
+  }
   if (!response.ok) throw new Error((await response.text()) || '请求未完成')
   return response.json()
 }
@@ -902,10 +914,12 @@ async function createSpace() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: newSpaceName.value.trim(), description: newSpaceDescription.value.trim() })
     })
+    spaces.value = [created, ...spaces.value.filter(space => space.id !== created.id)]
+    selectedSpaceId.value = created.id
+    selectedCollectionId.value = null
     closeSpaceComposer()
-    notice.value = `已创建知识空间“${created.name}”`
-    await loadSpaces()
-    await selectSpace(created.id)
+    notice.value = `已创建知识空间“${created.name}”，现在可以直接导入和整理视频`
+    await refreshCurrent()
   } catch (cause) {
     error.value = cause.message || '创建知识空间失败'
   } finally {

@@ -1,4 +1,4 @@
-import { apiRequest } from './api'
+import { apiRequest, apiUploadRequest } from './api'
 
 const CHUNK_SIZE = 5 * 1024 * 1024
 const UPLOAD_CONCURRENCY = 3
@@ -112,23 +112,26 @@ export async function uploadVideoInChunks(file, onProgress = () => {}, signal) {
   const resumedChunks = totalChunks - pendingChunks.length
   const meter = createSpeedMeter()
   const retrying = new Map()
+  const inFlightBytes = new Map()
   let completedChunks = resumedChunks
 
   const emit = phase => {
-    const transferred = uploadedBytes - resumedBytes
+    const inFlight = [...inFlightBytes.values()].reduce((sum, bytes) => sum + bytes, 0)
+    const visibleUploadedBytes = Math.min(totalBytes, uploadedBytes + inFlight)
+    const transferred = visibleUploadedBytes - resumedBytes
     const speed = meter.speed(transferred)
-    const remainingBytes = Math.max(0, totalBytes - uploadedBytes)
+    const remainingBytes = Math.max(0, totalBytes - visibleUploadedBytes)
     const attempts = [...retrying.values()]
     onProgress({
       phase,
       completedChunks,
       totalChunks,
-      uploadedBytes,
+      uploadedBytes: visibleUploadedBytes,
       totalBytes,
       resumedBytes,
       resumedChunks,
       percent: totalBytes
-        ? Math.min(100, Math.round((uploadedBytes / totalBytes) * 100))
+        ? Math.min(100, Math.round((visibleUploadedBytes / totalBytes) * 100))
         : 0,
       bytesPerSecond: speed,
       etaSeconds: speed && remainingBytes ? remainingBytes / speed : null,
@@ -150,17 +153,28 @@ export async function uploadVideoInChunks(file, onProgress = () => {}, signal) {
       }
       const index = pendingChunks[cursor++]
       try {
-        await uploadChunkWithRetry(file, uploadId, index, totalChunks, signal, attempt => {
-          retrying.set(index, attempt)
-          emit('uploading')
+        await uploadChunkWithRetry(file, uploadId, index, totalChunks, signal, {
+          onRetry: attempt => {
+            retrying.set(index, attempt)
+            inFlightBytes.set(index, 0)
+            emit('uploading')
+          },
+          onProgress: bytes => {
+            inFlightBytes.set(index, bytes)
+            meter.record(uploadedBytes - resumedBytes + [...inFlightBytes.values()].reduce((sum, value) => sum + value, 0))
+            emit('uploading')
+          }
         })
         retrying.delete(index)
+        inFlightBytes.delete(index)
         uploadedBytes += chunkSize(file, index)
         completedChunks += 1
         meter.record(uploadedBytes - resumedBytes)
         emit('uploading')
       } catch (error) {
         retrying.delete(index)
+        inFlightBytes.delete(index)
+        emit('uploading')
         fatalError = error
       }
     }
@@ -175,7 +189,7 @@ export async function uploadVideoInChunks(file, onProgress = () => {}, signal) {
 
   emit('merging')
   const params = new URLSearchParams({ uploadId })
-  const response = await apiRequest(`/media/complete-upload?${params}`, {
+  const response = await requestWithTimeout(`/media/complete-upload?${params}`, {
     method: 'POST',
     signal
   })
@@ -207,7 +221,7 @@ async function resolveUploadSession(file, totalChunks, signal) {
     let response
     try {
       const params = new URLSearchParams({ uploadId: storedUploadId })
-      response = await apiRequest(`/media/upload-status?${params}`, { signal })
+      response = await requestWithTimeout(`/media/upload-status?${params}`, { signal })
     } catch (error) {
       if (isAbortError(error, signal)) throw new UploadAbortedError()
       // 断网/超时意味着“进度未知”，而不是“进度失效”。此时必须保留凭据并中断本次上传，
@@ -241,7 +255,7 @@ async function resolveUploadSession(file, totalChunks, signal) {
 
 async function initializeUpload(filename, totalChunks, signal) {
   const params = new URLSearchParams({ filename, totalChunks: String(totalChunks) })
-  const response = await apiRequest(`/media/init-upload?${params}`, {
+  const response = await requestWithTimeout(`/media/init-upload?${params}`, {
     method: 'POST',
     signal
   })
@@ -250,12 +264,39 @@ async function initializeUpload(filename, totalChunks, signal) {
   return body
 }
 
-async function uploadChunkWithRetry(file, uploadId, chunkIndex, totalChunks, signal, onRetry) {
+/** Bound metadata/merge requests too; a stalled init must not hold the entire batch queue forever. */
+async function requestWithTimeout(path, options, timeoutMs = 60_000) {
+  const controller = new AbortController()
+  let timedOut = false
+  const abortFromCaller = () => controller.abort()
+  if (options.signal?.aborted) throw new UploadAbortedError()
+  options.signal?.addEventListener('abort', abortFromCaller, { once: true })
+  const timeout = setTimeout(() => {
+    timedOut = true
+    controller.abort()
+  }, timeoutMs)
+  try {
+    return await apiRequest(path, { ...options, signal: controller.signal })
+  } catch (error) {
+    if (timedOut) {
+      const timeoutError = new Error(`请求 ${Math.round(timeoutMs / 1000)} 秒无响应，已跳过当前视频；可重试继续上传`)
+      timeoutError.status = 408
+      throw timeoutError
+    }
+    if (isAbortError(error, options.signal)) throw new UploadAbortedError()
+    throw error
+  } finally {
+    clearTimeout(timeout)
+    options.signal?.removeEventListener('abort', abortFromCaller)
+  }
+}
+
+async function uploadChunkWithRetry(file, uploadId, chunkIndex, totalChunks, signal, { onRetry, onProgress }) {
   let lastError = null
   for (let attempt = 1; attempt <= CHUNK_MAX_ATTEMPTS; attempt += 1) {
     throwIfAborted(signal)
     try {
-      await uploadChunk(file, uploadId, chunkIndex, totalChunks, signal)
+      await uploadChunk(file, uploadId, chunkIndex, totalChunks, signal, onProgress)
       return
     } catch (error) {
       if (isAbortError(error, signal)) throw new UploadAbortedError()
@@ -270,7 +311,7 @@ async function uploadChunkWithRetry(file, uploadId, chunkIndex, totalChunks, sig
   )
 }
 
-async function uploadChunk(file, uploadId, chunkIndex, totalChunks, signal) {
+async function uploadChunk(file, uploadId, chunkIndex, totalChunks, signal, onProgress) {
   const [start, end] = chunkBounds(file, chunkIndex)
   const formData = new FormData()
   formData.append('uploadId', uploadId)
@@ -278,10 +319,11 @@ async function uploadChunk(file, uploadId, chunkIndex, totalChunks, signal) {
   formData.append('totalChunks', String(totalChunks))
   formData.append('file', file.slice(start, end))
 
-  const response = await apiRequest('/media/upload-chunk', {
-    method: 'POST',
+  const chunkBytes = end - start
+  const response = await apiUploadRequest('/media/upload-chunk', {
     body: formData,
-    signal
+    signal,
+    onUploadProgress: (loaded, total) => onProgress?.(total ? Math.min(chunkBytes, Math.round((loaded / total) * chunkBytes)) : 0)
   })
   if (response.ok) return
   const error = new Error(await readErrorText(response) || '服务端未接收该分片')
