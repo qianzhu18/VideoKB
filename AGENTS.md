@@ -2,11 +2,13 @@
 
 ## Product implementation direction
 
-- `DOVideo-AI` is the sole active product engineering project. Its product backend is Java 21 / Spring Boot and its web client is Vue.
-- Do not move product implementation to Python or Node.js because the user has used those languages in other projects. Follow the explicit Java backend direction for this project.
-- `https://github.com/qianzhu18/VideoKB` is the existing Python 3.11 / FastAPI project that the user wants converted to Java. Preserve the project and its capabilities; do not treat it as archive-only, discard it, or continue building product features in Python.
-- The current GitHub archived/read-only flag is repository metadata, not the user's desired project outcome. The Java migration target location must follow the user's explicit direction; when not specified, ask whether the port belongs in `DOVideo-AI` or in the `VideoKB` repository itself.
-- Python files may remain only as evaluation/data assets during migration. Port product capabilities to Java rather than extending the Python implementation.
+- This checkout is the sole active VideoKB product engineering project. Its backend is Java 21 / Spring Boot and its web client is Vue.
+- The canonical GitHub repository and sole publishing destination is `https://github.com/qianzhu18/VideoKB.git`, with `main` as the default branch. Follow the repository ownership and publishing safeguards in `agent.md` before any Git publication.
+- Do not push, sync, or open PRs for this project against `qianzhu18/DOVideo-AI`, `Xiaoc7r/DOVideo-AI`, or another upstream/fork repository. Verify `origin`, the current branch, and working tree before publishing; stop if the remote is not the canonical VideoKB repository.
+- The prior contents and history of the VideoKB repository were replaced at the owner's explicit request. Do not merge or restore the unrelated former project, its branches, tags, or commit history into this product.
+- Do not rewrite remote `main` history or force-push unless the owner explicitly requests it in the current task. Routine publication should fast-forward from the current canonical `origin/main`.
+- Do not move product implementation to Python or Node.js because the user has used those languages in other projects. Python files may remain as evaluation/data assets; the product backend remains Java.
+- Python files may remain as evaluation/data assets; do not extend them as product implementation.
 - When a README, TODO, or report claims a capability is complete, verify it in source code and distinguish code presence from tests, real-data evaluation, and end-to-end acceptance.
 - Treat Qdrant as the current transitional vector store. The user selected Milvus on 2026-10-09 and reconfirmed it as the final dense-store target on 2026-10-17. The migration decision and evidence log lives at `docs/专题资料/向量数据库迁移决策与过程记录.md`. Cutover still requires dual-write, backfill, shadow-query, authorization, recovery, and benchmark gates; do not describe the confirmed direction as an implemented migration.
 
