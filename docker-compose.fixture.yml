@@ -1,0 +1,68 @@
+name: video-kb-fixture
+services:
+  mysql:
+    image: mysql:8.0
+    ports: ["127.0.0.1:3307:3306"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?required}
+      MYSQL_DATABASE: videoagent_arch_20261007
+      MYSQL_USER: ${MYSQL_APP_USER:-dovideo}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?required}
+    volumes: ["fixture-mysql:/var/lib/mysql"]
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h localhost -uroot --silent"]
+      interval: 5s
+      retries: 24
+  redis:
+    image: redis:7.4-alpine
+    ports: ["127.0.0.1:6380:6379"]
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?required}
+    command: ["sh", "-c", "exec redis-server --appendonly yes --requirepass \"$$REDIS_PASSWORD\""]
+    volumes: ["fixture-redis:/data"]
+  qdrant:
+    image: qdrant/qdrant:v1.18.2
+    ports: ["127.0.0.1:6333:6333"]
+    environment:
+      QDRANT__SERVICE__API_KEY: ${QDRANT_API_KEY:?required}
+    volumes: ["fixture-qdrant:/qdrant/storage"]
+  minio:
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
+    ports: ["127.0.0.1:9000:9000"]
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:?required}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:?required}
+    command: server /data
+    volumes: ["fixture-minio:/data"]
+  rmqnamesrv:
+    image: apache/rocketmq:5.3.4
+    ports: ["127.0.0.1:9876:9876"]
+    environment:
+      JAVA_OPT_EXT: -server -Xms256m -Xmx256m -Xmn128m
+    command: sh mqnamesrv
+  rmqbroker:
+    image: apache/rocketmq:5.3.4
+    ports: ["127.0.0.1:10911:10911", "127.0.0.1:10909:10909"]
+    environment:
+      JAVA_OPT_EXT: -server -Xms256m -Xmx256m -Xmn128m
+    volumes:
+      - ./rocketmq/broker.conf:/home/rocketmq/broker.conf:ro
+      - fixture-rmq:/home/rocketmq/store
+    command: sh mqbroker -n rmqnamesrv:9876 -c /home/rocketmq/broker.conf
+    depends_on:
+      rmqnamesrv:
+        condition: service_started
+      rmqstore-init:
+        condition: service_completed_successfully
+  rmqstore-init:
+    image: apache/rocketmq:5.3.4
+    user: "0"
+    entrypoint: ["sh", "-c", "chown -R rocketmq:rocketmq /home/rocketmq/store"]
+    volumes: ["fixture-rmq:/home/rocketmq/store"]
+volumes:
+  fixture-mysql:
+  fixture-redis:
+  fixture-qdrant:
+  fixture-minio:
+  fixture-rmq:

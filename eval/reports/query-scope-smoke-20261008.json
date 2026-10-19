@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-08",
+  "fixture": "Real MySQL/Redis/Qdrant/MQ/HTTP with deterministic AI",
+  "productionQualityClaim": false,
+  "checks": [
+    {
+      "name": "omitted search scope uses same default space in Web and MCP",
+      "passed": true
+    },
+    {
+      "name": "same candidates with same principal and range",
+      "passed": true
+    },
+    {
+      "name": "legacy search remains array",
+      "passed": true
+    },
+    {
+      "name": "folder without space rejected in HTTP",
+      "passed": true
+    },
+    {
+      "name": "pending folder excludes READY sources from sibling folders",
+      "passed": true
+    },
+    {
+      "name": "MCP preserves pending state and warnings",
+      "passed": true
+    },
+    {
+      "name": "ask reports NOT_READY without model inference on both transports",
+      "passed": true
+    },
+    {
+      "name": "omitted ask scope uses same default space",
+      "passed": true
+    },
+    {
+      "name": "failed ingest distinguished from empty corpus",
+      "passed": true
+    },
+    {
+      "name": "removed placement no longer appears in old folder",
+      "passed": true
+    },
+    {
+      "name": "explicit empty space never fans out to other spaces",
+      "passed": true
+    },
+    {
+      "name": "different owner cannot discover query state",
+      "passed": true
+    },
+    {
+      "name": "different owner cannot ask inside scope",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+:root {
+  --color-paper: oklch(98.7% 0.004 255);
+  --color-white: oklch(100% 0 0);
+  --color-paper-raised: oklch(96.8% 0.009 252);
+  --color-ink: oklch(25% 0.025 258);
+  --color-muted: oklch(49% 0.025 258);
+  --color-subtle: oklch(63% 0.02 258);
+  --color-rule: oklch(89% 0.014 255);
+  --color-cobalt: oklch(50% 0.16 266);
+  --color-cobalt-deep: oklch(43% 0.16 266);
+  --color-cobalt-wash: oklch(95% 0.025 266);
+  --color-amber: oklch(55% 0.11 72);
+  --color-amber-wash: oklch(96% 0.03 80);
+  --color-red: oklch(50% 0.15 25);
+  --color-red-wash: oklch(96% 0.025 25);
+  --color-green: oklch(48% 0.09 155);
+  --color-green-wash: oklch(96% 0.025 155);
+  --color-shadow-soft: oklch(25% 0.025 258 / 8%);
+  --color-rule-strong: oklch(75% 0.025 258 / 28%);
+  --font-body: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Iowan Old Style", "Songti SC", "STSong", serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 88px;
+  --radius-sm: 4px;
+  --radius: 7px;
+  --radius-lg: 12px;
+  --shadow-panel: 0 12px 36px -28px oklch(25% 0.025 258 / 18%);
+}

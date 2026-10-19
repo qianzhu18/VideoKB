@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-08",
+  "media_sha256": "aa7cc1b91845b39b13ebe9c94745490eaa3e508bbce83b022504bcc8d2ed2090",
+  "seed_sha256": "c1e3f2844c97842ed53837647c6bb9148ce6b0476398e9b0a525d66d8927b12f",
+  "mediaKey": "bili-mianshi-11",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "hevc"
+      },
+      {
+        "codec_name": "aac"
+      }
+    ],
+    "format": {
+      "duration": "1968.336190",
+      "size": "63312351"
+    }
+  },
+  "sourceId": 3,
+  "mediaId": 3,
+  "spaceId": 2,
+  "imported_raw_segments": 33,
+  "two_folder_retrieval": true,
+  "range_playback": true,
+  "remote_decode_at_75_seconds": true,
+  "native_asr_verified": false,
+  "real_model_quality_verified": false,
+  "boundary": "Real course bytes and archived ASR/OCR; deterministic fixture chunking/embedding; not production quality.",
+  "vue_playback_verified": {
+    "target_seconds": 60,
+    "observed_seconds": 65.847911,
+    "duration_seconds": 1968.33619,
+    "readyState": 4,
+    "error": null,
+    "screenshot": "real-media-ui-20261008.png"
+  }
+}

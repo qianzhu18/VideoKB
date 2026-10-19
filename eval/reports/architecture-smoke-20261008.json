@@ -1,0 +1,162 @@
+{
+  "fixture": "2 synthetic timestamped segments, deterministic three-dimensional embeddings; real MySQL/Redis/RocketMQ/Qdrant/MinIO",
+  "production_quality_claim": false,
+  "checks": [
+    {
+      "name": "upload accepted",
+      "passed": true
+    },
+    {
+      "name": "job exists immediately after upload",
+      "passed": true
+    },
+    {
+      "name": "knowledge READY without report task",
+      "passed": true
+    },
+    {
+      "name": "reference creation is idempotent",
+      "passed": true
+    },
+    {
+      "name": "both folders show the same content identity",
+      "passed": true
+    },
+    {
+      "name": "keyword resolves reference/subtree 4",
+      "passed": true
+    },
+    {
+      "name": "vector resolves reference/subtree 4",
+      "passed": true
+    },
+    {
+      "name": "hybrid resolves reference/subtree 4",
+      "passed": true
+    },
+    {
+      "name": "keyword resolves reference/subtree 5",
+      "passed": true
+    },
+    {
+      "name": "vector resolves reference/subtree 5",
+      "passed": true
+    },
+    {
+      "name": "hybrid resolves reference/subtree 5",
+      "passed": true
+    },
+    {
+      "name": "space search deduplicates placements",
+      "passed": true
+    },
+    {
+      "name": "foreign tenant cannot reference",
+      "passed": true
+    },
+    {
+      "name": "foreign tenant cannot search",
+      "passed": true
+    },
+    {
+      "name": "failed rebuild surfaces an error",
+      "passed": true
+    },
+    {
+      "name": "failed rebuild preserves READY and published pointer",
+      "passed": true
+    },
+    {
+      "name": "failed rebuild preserves original evidence",
+      "passed": true
+    },
+    {
+      "name": "lexical retrieval works while embeddings fail",
+      "passed": true
+    },
+    {
+      "name": "hybrid falls back while embeddings fail",
+      "passed": true
+    },
+    {
+      "name": "successful rebuild publishes a new generation",
+      "passed": true
+    },
+    {
+      "name": "old generations do not consume search topK",
+      "passed": true
+    },
+    {
+      "name": "explicit rebuild job accepted for READY content",
+      "passed": true
+    },
+    {
+      "name": "explicit job rebuild publishes another generation",
+      "passed": true
+    },
+    {
+      "name": "folder containing a reference cannot be deleted",
+      "passed": true
+    },
+    {
+      "name": "unlink removes only current folder results",
+      "passed": true
+    },
+    {
+      "name": "last reference cannot be unlinked",
+      "passed": true
+    },
+    {
+      "name": "report failure cannot change knowledge readiness",
+      "passed": true
+    },
+    {
+      "name": "catalog discovers both folder memberships and job",
+      "passed": true
+    },
+    {
+      "name": "catalog rejects other tenant",
+      "passed": true
+    },
+    {
+      "name": "mixed concurrent retrieval has no errors/duplicates",
+      "passed": true
+    },
+    {
+      "name": "ordinary users cannot read system metrics",
+      "passed": true
+    },
+    {
+      "name": "stage metrics exported",
+      "passed": true
+    },
+    {
+      "name": "metrics require bearer authentication",
+      "passed": true
+    }
+  ],
+  "concurrency": 8,
+  "mixed_workload": "90 retrieval requests + 18 job-status reads + 1 index rebuild, concurrent",
+  "latency": {
+    "vector": {
+      "requests": 30,
+      "p50_seconds": 0.03147202049996167,
+      "p95_seconds": 0.04996179099998699
+    },
+    "keyword": {
+      "requests": 30,
+      "p50_seconds": 0.0286481250000179,
+      "p95_seconds": 0.04748866600004931
+    },
+    "hybrid": {
+      "requests": 30,
+      "p50_seconds": 0.028164687500009222,
+      "p95_seconds": 0.04749670800003969
+    }
+  },
+  "ui_fixture": {
+    "spaceId": 2,
+    "sourceId": 2,
+    "mediaId": 2
+  }
+}

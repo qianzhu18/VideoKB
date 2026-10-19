@@ -1,0 +1,50 @@
+{
+  "fixture": "2 synthetic timestamped segments, deterministic three-dimensional embeddings; real MySQL/Redis/RocketMQ/Qdrant/MinIO",
+  "production_quality_claim": false,
+  "checks": [
+    {
+      "name": "initialize accepted",
+      "passed": true
+    },
+    {
+      "name": "five tools including folder discovery",
+      "passed": true
+    },
+    {
+      "name": "get_knowledge_catalog executes",
+      "passed": true
+    },
+    {
+      "name": "catalog shows folder references and independent job state",
+      "passed": true
+    },
+    {
+      "name": "search_video_knowledge executes",
+      "passed": true
+    },
+    {
+      "name": "all-space retrieval deduplicates shared evidence",
+      "passed": true
+    },
+    {
+      "name": "search_video_knowledge executes",
+      "passed": true
+    },
+    {
+      "name": "MCP folder filtering uses backend scope",
+      "passed": true
+    },
+    {
+      "name": "get_video_evidence executes",
+      "passed": true
+    },
+    {
+      "name": "evidence surface returns published segments",
+      "passed": true
+    },
+    {
+      "name": "unknown MCP client rejected",
+      "passed": true
+    }
+  ]
+}

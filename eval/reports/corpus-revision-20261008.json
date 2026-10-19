@@ -1,0 +1,125 @@
+{
+  "archivedSha256": "c1e3f2844c97842ed53837647c6bb9148ce6b0476398e9b0a525d66d8927b12f",
+  "snapshotSha256": "e473049a58d3d0019bd137c1eccfcdc3b8fadb181cf012936afb0455d9036950",
+  "videos": 13,
+  "windows": 674,
+  "changedTextWindows": 23,
+  "timeBoundariesChanged": false,
+  "differences": [
+    {
+      "mediaKey": "bili-mianshi-01",
+      "startMs": 1140000,
+      "similarity": 0.99685
+    },
+    {
+      "mediaKey": "bili-mianshi-01",
+      "startMs": 1740000,
+      "similarity": 0.99703
+    },
+    {
+      "mediaKey": "bili-mianshi-02",
+      "startMs": 60000,
+      "similarity": 0.99584
+    },
+    {
+      "mediaKey": "bili-mianshi-02",
+      "startMs": 420000,
+      "similarity": 0.99733
+    },
+    {
+      "mediaKey": "bili-mianshi-02",
+      "startMs": 960000,
+      "similarity": 0.98951
+    },
+    {
+      "mediaKey": "bili-mianshi-02",
+      "startMs": 2460000,
+      "similarity": 0.99523
+    },
+    {
+      "mediaKey": "bili-mianshi-02",
+      "startMs": 2640000,
+      "similarity": 0.9824
+    },
+    {
+      "mediaKey": "bili-mianshi-03",
+      "startMs": 300000,
+      "similarity": 0.99446
+    },
+    {
+      "mediaKey": "bili-mianshi-03",
+      "startMs": 2220000,
+      "similarity": 0.99475
+    },
+    {
+      "mediaKey": "bili-mianshi-03",
+      "startMs": 2460000,
+      "similarity": 0.99684
+    },
+    {
+      "mediaKey": "bili-mianshi-04",
+      "startMs": 420000,
+      "similarity": 0.99664
+    },
+    {
+      "mediaKey": "bili-mianshi-04",
+      "startMs": 1680000,
+      "similarity": 0.9967
+    },
+    {
+      "mediaKey": "bili-mianshi-06",
+      "startMs": 1800000,
+      "similarity": 0.9792
+    },
+    {
+      "mediaKey": "bili-mianshi-06",
+      "startMs": 1980000,
+      "similarity": 0.99099
+    },
+    {
+      "mediaKey": "bili-mianshi-06",
+      "startMs": 2280000,
+      "similarity": 0.99435
+    },
+    {
+      "mediaKey": "bili-mianshi-07",
+      "startMs": 1620000,
+      "similarity": 0.99272
+    },
+    {
+      "mediaKey": "bili-mianshi-08",
+      "startMs": 960000,
+      "similarity": 0.99385
+    },
+    {
+      "mediaKey": "bili-mianshi-08",
+      "startMs": 2700000,
+      "similarity": 0.99847
+    },
+    {
+      "mediaKey": "bili-mianshi-09",
+      "startMs": 2760000,
+      "similarity": 0.99375
+    },
+    {
+      "mediaKey": "bili-mianshi-11",
+      "startMs": 1560000,
+      "similarity": 0.99383
+    },
+    {
+      "mediaKey": "bili-mianshi-12",
+      "startMs": 540000,
+      "similarity": 0.99015
+    },
+    {
+      "mediaKey": "bili-mianshi-12",
+      "startMs": 1440000,
+      "similarity": 0.99435
+    },
+    {
+      "mediaKey": "bili-mianshi-13",
+      "startMs": 660000,
+      "similarity": 0.99099
+    }
+  ]
+}

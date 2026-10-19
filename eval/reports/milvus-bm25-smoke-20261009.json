@@ -1,0 +1,563 @@
+{
+  "date": "2026-10-09",
+  "milvusVersion": "2.6.24",
+  "lexicalProfile": "videokb-bm25-jieba-lowercase-v1",
+  "mapping": {
+    "corpusSha256": "e473049a58d3d0019bd137c1eccfcdc3b8fadb181cf012936afb0455d9036950",
+    "spaceId": 14,
+    "videos": [
+      {
+        "title": "01-【计算机基础】计算机网络面试八股总结.mp4",
+        "mediaId": 28,
+        "sourceId": 29,
+        "versionId": 45,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-01",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "02-【计算机基础】数据库MySQL面试八股总结.mp4",
+        "mediaId": 29,
+        "sourceId": 30,
+        "versionId": 46,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-02",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "03-【计算机基础】Redis面试八股总结.mp4",
+        "mediaId": 30,
+        "sourceId": 31,
+        "versionId": 47,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-03",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "04-【计算机基础】操作系统面试八股总结.mp4",
+        "mediaId": 31,
+        "sourceId": 32,
+        "versionId": 48,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-04",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "05-【计算机八股】Java SE基础八股大总结.mp4",
+        "mediaId": 32,
+        "sourceId": 33,
+        "versionId": 49,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-05",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "06-【JUC八股】Java并发编程面试常问大总结.mp4",
+        "mediaId": 33,
+        "sourceId": 34,
+        "versionId": 50,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-06",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "07-【Spring系列八股】Spring、SpringBoot面试考点大总结.mp4",
+        "mediaId": 34,
+        "sourceId": 35,
+        "versionId": 51,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-07",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "08-【计算机八股】消息队列面试考点大总结（Kafka、RocketMQ、RabbitMQ...).mp4",
+        "mediaId": 35,
+        "sourceId": 36,
+        "versionId": 52,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-08",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "09-【计算机八股】Mybatis八股大总结.mp4",
+        "mediaId": 36,
+        "sourceId": 37,
+        "versionId": 53,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-09",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "10-【计算机基础】Java虚拟机JVM面试八股总结.mp4",
+        "mediaId": 37,
+        "sourceId": 38,
+        "versionId": 54,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-10",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "11-【思维导图】苍穹外卖项目面试八股大总结.mp4",
+        "mediaId": 38,
+        "sourceId": 39,
+        "versionId": 55,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-11",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "12-【Java开发】黑马点评项目面试八股大总结.mp4",
+        "mediaId": 39,
+        "sourceId": 40,
+        "versionId": 56,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-12",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      },
+      {
+        "title": "13-【计算机八股】AI基础核心概念大总结.mp4",
+        "mediaId": 40,
+        "sourceId": 41,
+        "versionId": 57,
+        "versionNo": 2,
+        "parserVersion": "raw-evidence-v2",
+        "embeddingModel": "BAAI/bge-m3",
+        "mediaKey": "bili-mianshi-13",
+        "indexProfile": "raw-boundary-v1-max1400-overlap1",
+        "vectorDimension": 1024
+      }
+    ],
+    "realEmbedding": true,
+    "embeddingModel": "BAAI/bge-m3",
+    "vectorOrigin": "Real BGE-M3 embeddings of frozen raw-boundary blocks; prior generation retained",
+    "summaryOrigin": "No generated summaries in the new retrieval blocks",
+    "nativeAsrRerun": false,
+    "windows": {
+      "bili-mianshi-01": {
+        "windows": 52
+      },
+      "bili-mianshi-02": {
+        "windows": 56
+      },
+      "bili-mianshi-03": {
+        "windows": 47
+      },
+      "bili-mianshi-04": {
+        "windows": 41
+      },
+      "bili-mianshi-05": {
+        "windows": 36
+      },
+      "bili-mianshi-06": {
+        "windows": 62
+      },
+      "bili-mianshi-07": {
+        "windows": 55
+      },
+      "bili-mianshi-08": {
+        "windows": 54
+      },
+      "bili-mianshi-09": {
+        "windows": 52
+      },
+      "bili-mianshi-10": {
+        "windows": 61
+      },
+      "bili-mianshi-11": {
+        "windows": 33
+      },
+      "bili-mianshi-12": {
+        "windows": 59
+      },
+      "bili-mianshi-13": {
+        "windows": 66
+      }
+    },
+    "billingCost": null,
+    "rebuildObservations": [
+      {
+        "mediaKey": "bili-mianshi-01",
+        "rawWindows": 52,
+        "seconds": 3.9129089580019354,
+        "retrievalBlocks": 47,
+        "priorVersionId": 29,
+        "published": {
+          "versionId": 45,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-02",
+        "rawWindows": 56,
+        "seconds": 2.529631416000484,
+        "retrievalBlocks": 55,
+        "priorVersionId": 30,
+        "published": {
+          "versionId": 46,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-03",
+        "rawWindows": 47,
+        "seconds": 2.0885230419989966,
+        "retrievalBlocks": 41,
+        "priorVersionId": 31,
+        "published": {
+          "versionId": 47,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-04",
+        "rawWindows": 41,
+        "seconds": 1.9939169579993177,
+        "retrievalBlocks": 36,
+        "priorVersionId": 32,
+        "published": {
+          "versionId": 48,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-05",
+        "rawWindows": 36,
+        "seconds": 2.0342817500022647,
+        "retrievalBlocks": 32,
+        "priorVersionId": 33,
+        "published": {
+          "versionId": 49,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-06",
+        "rawWindows": 62,
+        "seconds": 3.5316032500013534,
+        "retrievalBlocks": 72,
+        "priorVersionId": 34,
+        "published": {
+          "versionId": 50,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-07",
+        "rawWindows": 55,
+        "seconds": 2.45298379200176,
+        "retrievalBlocks": 53,
+        "priorVersionId": 35,
+        "published": {
+          "versionId": 51,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-08",
+        "rawWindows": 54,
+        "seconds": 2.3359769169983338,
+        "retrievalBlocks": 37,
+        "priorVersionId": 36,
+        "published": {
+          "versionId": 52,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-09",
+        "rawWindows": 52,
+        "seconds": 2.218148875002953,
+        "retrievalBlocks": 42,
+        "priorVersionId": 37,
+        "published": {
+          "versionId": 53,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-10",
+        "rawWindows": 61,
+        "seconds": 2.6369956660018943,
+        "retrievalBlocks": 51,
+        "priorVersionId": 38,
+        "published": {
+          "versionId": 54,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-11",
+        "rawWindows": 33,
+        "seconds": 1.2397826659980637,
+        "retrievalBlocks": 28,
+        "priorVersionId": 39,
+        "published": {
+          "versionId": 55,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-12",
+        "rawWindows": 59,
+        "seconds": 2.4681648750010936,
+        "retrievalBlocks": 45,
+        "priorVersionId": 40,
+        "published": {
+          "versionId": 56,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      },
+      {
+        "mediaKey": "bili-mianshi-13",
+        "rawWindows": 66,
+        "seconds": 2.592229583999142,
+        "retrievalBlocks": 53,
+        "priorVersionId": 41,
+        "published": {
+          "versionId": 57,
+          "versionNo": 2,
+          "indexProfile": "raw-boundary-v1-max1400-overlap1",
+          "parserVersion": "raw-evidence-v2",
+          "embeddingModel": "BAAI/bge-m3",
+          "vectorDimension": 1024
+        }
+      }
+    ]
+  },
+  "initialDegradationWarnings": [],
+  "backfills": [
+    {
+      "sourceId": 29,
+      "versionId": 45,
+      "documents": 47,
+      "seconds": 0.055824458999268245
+    },
+    {
+      "sourceId": 30,
+      "versionId": 46,
+      "documents": 55,
+      "seconds": 0.03679516700503882
+    },
+    {
+      "sourceId": 31,
+      "versionId": 47,
+      "documents": 41,
+      "seconds": 0.03211712499614805
+    },
+    {
+      "sourceId": 32,
+      "versionId": 48,
+      "documents": 36,
+      "seconds": 0.0345303750000312
+    },
+    {
+      "sourceId": 33,
+      "versionId": 49,
+      "documents": 32,
+      "seconds": 0.03128429199568927
+    },
+    {
+      "sourceId": 34,
+      "versionId": 50,
+      "documents": 72,
+      "seconds": 0.04537833299400518
+    },
+    {
+      "sourceId": 35,
+      "versionId": 51,
+      "documents": 53,
+      "seconds": 0.03257441699679475
+    },
+    {
+      "sourceId": 36,
+      "versionId": 52,
+      "documents": 37,
+      "seconds": 0.028828082999098115
+    },
+    {
+      "sourceId": 37,
+      "versionId": 53,
+      "documents": 42,
+      "seconds": 0.030170416001055855
+    },
+    {
+      "sourceId": 38,
+      "versionId": 54,
+      "documents": 51,
+      "seconds": 0.04709566599922255
+    },
+    {
+      "sourceId": 39,
+      "versionId": 55,
+      "documents": 28,
+      "seconds": 0.034110500004317146
+    },
+    {
+      "sourceId": 40,
+      "versionId": 56,
+      "documents": 45,
+      "seconds": 0.03724312499980442
+    },
+    {
+      "sourceId": 41,
+      "versionId": 57,
+      "documents": 53,
+      "seconds": 0.036822084002778865
+    }
+  ],
+  "checks": [
+    {
+      "name": "backfill indexes all 592 current retrieval blocks",
+      "passed": true
+    },
+    {
+      "name": "backfill creates no evidence versions or embedding cache entries",
+      "passed": true
+    },
+    {
+      "name": "healthy keyword search returns BM25 and no degradation warnings",
+      "passed": true
+    },
+    {
+      "name": "every hit is from the published mapped generation",
+      "passed": true
+    },
+    {
+      "name": "original evidence keeps exact version and nonempty original identities",
+      "passed": true
+    },
+    {
+      "name": "BM25 citations resolve to unchanged original text and timestamps",
+      "passed": true
+    },
+    {
+      "name": "legacy search still returns an array",
+      "passed": true
+    },
+    {
+      "name": "explicit LIKE comparison retains keyword match type",
+      "passed": true
+    },
+    {
+      "name": "incomplete backfill emits a warning instead of silently searching a partial corpus",
+      "passed": true
+    },
+    {
+      "name": "backfill recovery clears warning",
+      "passed": true
+    },
+    {
+      "name": "directory-filtered BM25 never returns sibling sources",
+      "passed": true
+    },
+    {
+      "name": "removed placement immediately revokes folder evidence",
+      "passed": true
+    },
+    {
+      "name": "other owner cannot query corpus",
+      "passed": true
+    },
+    {
+      "name": "other owner cannot backfill a source",
+      "passed": true
+    },
+    {
+      "name": "Milvus outage falls back with explicit warning",
+      "passed": true
+    },
+    {
+      "name": "Milvus restart restores native BM25 with persisted data",
+      "passed": true
+    }
+  ],
+  "realInfrastructure": true,
+  "realCorpus": true,
+  "generationModelInvoked": false,
+  "productionCapacityClaim": false,
+  "denseMigrationComplete": false
+}

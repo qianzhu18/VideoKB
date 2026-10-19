@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "corpus": "13 frozen courses, real Milvus/SQL/Qdrant; ephemeral acceptance principal",
+  "checks": [
+    {
+      "name": "default hybrid workflow returns evidence without warnings",
+      "passed": true
+    },
+    {
+      "name": "original windows can be expanded with source and timestamp",
+      "passed": true
+    },
+    {
+      "name": "real incomplete-backfill warning is visible in Vue",
+      "passed": true
+    },
+    {
+      "name": "recovered UI clears degradation warning",
+      "passed": true
+    }
+  ],
+  "generationModelInvoked": false,
+  "productionAcceptance": false
+}

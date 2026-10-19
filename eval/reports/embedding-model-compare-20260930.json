@@ -1,0 +1,71 @@
+{
+  "benchmark": "dense-only exact cosine retrieval over current indexed video segments",
+  "corpus": {
+    "segments": 674,
+    "videos": 13,
+    "spaceIds": [
+      2,
+      3
+    ]
+  },
+  "golden": "golden-v2.json; legacy expected IDs mapped by matching topics/video titles to current IDs (mapping in script log)",
+  "metric": "first expected video rank among all segment vectors; no keyword fusion, score threshold, reranking, or generation; 25 answerable cases",
+  "qwen3_query_instruction": "Given a question about technical video content, retrieve transcript passages that directly answer the question.",
+  "qwen_dimensions": 1024,
+  "index_mutation": "none; candidate vectors computed in memory, Qdrant was not modified",
+  "models": {
+    "BAAI/bge-m3": {
+      "answerable": 25,
+      "recallAt1": 0.88,
+      "recallAt3": 0.92,
+      "recallAt5": 0.92,
+      "mrr": 0.9081,
+      "misses": [
+        "x-02",
+        "x-05"
+      ],
+      "dimensions": 1024,
+      "embeddingSeconds": 52.7
+    },
+    "Qwen/Qwen3-Embedding-0.6B": {
+      "answerable": 25,
+      "recallAt1": 0.96,
+      "recallAt3": 0.96,
+      "recallAt5": 0.96,
+      "mrr": 0.9605,
+      "misses": [
+        "x-05"
+      ],
+      "dimensions": 1024,
+      "embeddingSeconds": 34.8
+    },
+    "Qwen/Qwen3-Embedding-4B": {
+      "answerable": 25,
+      "recallAt1": 0.96,
+      "recallAt3": 0.96,
+      "recallAt5": 0.96,
+      "mrr": 0.9604,
+      "misses": [
+        "x-05"
+      ],
+      "dimensions": 1024,
+      "embeddingSeconds": 57.2
+    }
+  },
+  "legacyToCurrentMediaId": {
+    "13": 16,
+    "14": 13,
+    "15": 10,
+    "16": 11,
+    "17": 8,
+    "18": 15,
+    "19": 17,
+    "20": 14,
+    "21": 9,
+    "22": 7,
+    "23": 19,
+    "24": 18,
+    "25": 12
+  },
+  "mappingNote": "Legacy golden media IDs were explicitly matched to the current 01-13 video titles; see legacyToCurrentMediaId. This is a local diagnostic mapping, not a stable production ID contract."
+}

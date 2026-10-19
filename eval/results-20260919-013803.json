@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-19T01:37:32+0800",
+  "golden": "eval/golden.json",
+  "caseCount": 30,
+  "strategies": {
+    "vector": {
+      "recallAtK": {
+        "1": 0.5833,
+        "3": 0.625,
+        "5": 0.625
+      },
+      "mrr": 0.6042,
+      "refusalCorrectRate": 0.6667,
+      "refusalCorrect": "4/6",
+      "p50LatencyMs": 187.8,
+      "p95LatencyMs": 633.2,
+      "answerableMisses": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        17,
+        19,
+        22
+      ],
+      "falsePositives": [
+        25,
+        29
+      ]
+    },
+    "keyword": {
+      "recallAtK": {
+        "1": 0.0833,
+        "3": 0.0833,
+        "5": 0.0833
+      },
+      "mrr": 0.0833,
+      "refusalCorrectRate": 1.0,
+      "refusalCorrect": "6/6",
+      "p50LatencyMs": 7.1,
+      "p95LatencyMs": 10.9,
+      "answerableMisses": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "falsePositives": []
+    },
+    "hybrid": {
+      "recallAtK": {
+        "1": 0.5833,
+        "3": 0.6667,
+        "5": 0.6667
+      },
+      "mrr": 0.625,
+      "refusalCorrectRate": 0.6667,
+      "refusalCorrect": "4/6",
+      "p50LatencyMs": 181.6,
+      "p95LatencyMs": 2383.1,
+      "answerableMisses": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        19,
+        22
+      ],
+      "falsePositives": [
+        25,
+        29
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "fixture": "Real MySQL/Redis/Qdrant/MQ/HTTP; deterministic AI",
+  "productionQualityClaim": false,
+  "checks": [
+    {
+      "name": "new raw generation preserves exact original text and times",
+      "passed": true
+    },
+    {
+      "name": "old published original evidence remains readable",
+      "passed": true
+    },
+    {
+      "name": "search returns block profile and original evidence mapping",
+      "passed": true
+    },
+    {
+      "name": "each evidence id maps to the exact raw version/time",
+      "passed": true
+    },
+    {
+      "name": "identical rebuild works with embedding provider unavailable using cache",
+      "passed": true
+    },
+    {
+      "name": "new uncached input fails visibly while embedding provider unavailable",
+      "passed": true
+    },
+    {
+      "name": "failed generation keeps old published raw evidence",
+      "passed": true
+    },
+    {
+      "name": "failed generation not recalled",
+      "passed": true
+    },
+    {
+      "name": "unpublished version cannot be read",
+      "passed": true
+    },
+    {
+      "name": "MCP exposes original segment id and requested historical version",
+      "passed": true
+    }
+  ]
+}

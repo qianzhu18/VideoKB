@@ -1,0 +1,34 @@
+{
+  "theme": "Cobalt Field Notes",
+  "audience": "People who organize course, meeting, and work videos and need to find the spoken source again.",
+  "coreAction": "Import a video, search across sources, and jump back to the cited moment.",
+  "mood": ["quiet", "editorial", "precise", "human"],
+  "macrostructures": {
+    "home": "Long Document",
+    "workspace": "Workbench",
+    "knowledge": "Workbench"
+  },
+  "framework": "Vue 3 + Vite",
+  "animationLibrary": "none; CSS only",
+  "existingDesignSystem": "client/DESIGN.md",
+  "spacingTokensExisted": false,
+  "plannedFiles": {
+    "modify": [
+      "client/DESIGN.md",
+      "client/src/style.css",
+      "client/src/styles/home.css",
+      "client/src/styles/workspace.css",
+      "client/src/styles/knowledge.css",
+      "client/src/styles/batch.css",
+      "client/src/App.vue",
+      "client/src/components/ProductHome.vue",
+      "docs/专题资料/前端页面维护.md"
+    ],
+    "create": [
+      "client/src/tokens.css",
+      ".hallmark/preflight.json",
+      ".hallmark/log.json"
+    ],
+    "delete": []
+  }
+}

@@ -1,0 +1,71 @@
+
+.muku-panel { max-width: 1080px; margin: 28px auto 0; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; }
+.muku-panel-head, .muku-heading, .muku-settings, .muku-input-foot, .muku-progress-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.muku-heading { justify-content: flex-start; gap: 13px; }
+.muku-index { color: var(--brand); font: 12px var(--font-body); letter-spacing: normal; }
+.muku-eyebrow { margin: 0 0 4px; color: var(--muted); font: 12px var(--font-body); letter-spacing: normal; }
+h2, h3 { margin: 0; color: var(--ink); }
+h2 { font-size: 16px; }
+h3 { margin: 2px 0 12px; font-size: 13px; }
+.muku-connection { display: flex; align-items: center; gap: 7px; color: var(--muted); font-size: 12px; }
+.muku-connection i { width: 6px; height: 6px; border-radius: 50%; background: var(--rail); }
+.muku-connection.online i { background: var(--brand-soft); box-shadow: none; }
+.muku-connection a { color: var(--brand); font-size: 14px; }
+.muku-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 22px; margin-top: 18px; }
+.muku-field-label { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; color: var(--ink); font-size: 12px; }
+.muku-field-label span, .muku-input-foot { color: var(--muted); font-size: 12px; }
+.muku-input-column textarea, .muku-options textarea { width: 100%; resize: vertical; border: 1px solid var(--line); border-radius: 5px; padding: 10px; color: var(--ink); background: var(--surface); font: 12px/1.6 var(--font-body); }
+.muku-input-column textarea:focus, .muku-options textarea:focus{ outline: 1px solid var(--brand); border-color: var(--brand); }
+.muku-input-foot { margin: 6px 0 12px; }
+.muku-settings { justify-content: flex-start; gap: 12px; }
+.muku-settings label { display: grid; gap: 5px; color: var(--muted); font-size: 12px; }
+.muku-settings select { min-width: 118px; border: 1px solid var(--line); border-radius: 4px; padding: 7px 25px 7px 8px; color: var(--ink); background: var(--surface); font-family: var(--font-body); font-size: 12px; }
+.muku-options { display: flex; flex-direction: column; min-width: 0; padding: 13px; border-left: 1px solid var(--line); background: var(--surface); }
+.muku-options textarea { flex: 1; min-height: 96px; }
+.muku-hint, .muku-help { margin: 8px 0 12px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.muku-submit { display: flex; align-items: center; justify-content: space-between; min-height: 40px; padding: 0 13px; border: 0; border-radius: 4px; color: var(--ink); background: var(--brand-soft); cursor: pointer; font-weight: 750; font-size: 12px; }
+.muku-submit:disabled{ cursor: not-allowed; opacity: .4; }
+.muku-submit b { font-size: 17px; }
+.muku-error { margin: 8px 0 0; color: var(--danger); font-size: 12px; }
+.muku-login-hint { margin: 17px 0 0; color: var(--muted); font-size: 12px; }
+.muku-progress { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--line); }
+.muku-progress-head { justify-content: flex-start; color: var(--muted); font-size: 12px; }
+.muku-progress-head strong { color: var(--brand); font-size: 12px; white-space: nowrap; }
+.muku-progress-track { height: 3px; margin: 10px 0; background: var(--surface); }
+.muku-progress-track span { display: block; height: 100%; background: var(--brand-soft); transition: color .12s, background-color .12s, border-color .12s, opacity .12s; }
+.muku-items { display: grid; gap: 6px; max-height: 160px; overflow: auto; margin: 0; padding: 0; list-style: none; }
+.muku-items li { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 12px; }
+.muku-items li span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.muku-items li b { flex: 0 0 auto; color: var(--ink); font-weight: 500; }
+.muku-items li b.done { color: var(--brand); }
+.muku-items li b.failed { color: var(--danger); }
+.muku-resume { margin-top: 10px; padding: 7px 10px; border: 1px solid var(--brand); border-radius: 4px; background: var(--surface); color: var(--brand); cursor: pointer; font-size: 12px; }
+@media (max-width: 740px){ .muku-panel { padding: 16px; } .muku-grid { grid-template-columns: 1fr; gap: 14px; } .muku-options { border-left: 0; border-top: 1px solid var(--line); padding: 14px 0 0; } .muku-progress-head { align-items: flex-start; flex-direction: column; gap: 4px; } }
+
+.muku-panel { margin: 20px 0 0; max-width: none; background: var(--canvas); border: 1px solid var(--line); border-radius: 9px; padding: 20px; }
+.muku-heading { gap: 10px; }
+.muku-index { display: none; }
+.muku-eyebrow { color: var(--muted); font: 11px var(--font-body); }
+h2 { font: 600 16px var(--font-body); color: var(--ink); }
+h3 { color: var(--ink); font-size: 14px; }
+.muku-grid { gap: 20px; }
+.muku-input-column textarea, .muku-options textarea { font: 13px/1.8 var(--font-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 11px; }
+.muku-options { background: transparent; border-left: 1px solid var(--line); padding: 0 0 0 20px; }
+.muku-field-label, .muku-settings label { color: var(--muted); font-size: 12px; }
+.muku-field-label span, .muku-input-foot, .muku-hint, .muku-help { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.muku-connection { font-size: 12px; color: var(--muted); }
+.muku-connection.online i { background: var(--success); box-shadow: none; }
+.muku-connection a { min-width: 30px; min-height: 40px; display: inline-grid; place-items: center; color: var(--brand); }
+.muku-settings select { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; min-height: 40px; color: var(--ink); font-size: 12px; }
+.muku-submit { margin-top: 10px; background: var(--brand); color: var(--color-white); border-radius: 7px; min-height: 44px; font-size: 13px; }
+.muku-progress-track { background: var(--line); height: 4px; border-radius: 3px; }
+.muku-progress-track span { background: var(--brand); transition: none; }
+.muku-items li { font-size: 12px; padding: 6px 0; }
+.muku-items li b.done { color: var(--success); }
+.muku-error, .muku-items li b.failed { color: var(--danger); }
+.muku-resume { color: var(--brand); background: var(--brand-soft); border-color: var(--color-rule); min-height: 40px; font-size: 12px; border-radius: 6px; }
+@media (max-width: 740px) { .muku-panel { padding: 16px; } .muku-options { border-left: 0; border-top: 1px solid var(--line); padding: 16px 0 0; } .muku-panel-head { align-items: flex-start; flex-wrap: wrap; } .muku-grid { grid-template-columns: 1fr; } }
+
+.muku-settings, .muku-resume, .muku-panel, .muku-job { box-shadow: none; }
+.muku-panel, .muku-job { border-radius: var(--radius); }
+.muku-resume { border-color: var(--color-rule); background: var(--color-cobalt-wash); }

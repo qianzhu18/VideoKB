@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-09",
+  "environment": "isolated fixture; real infrastructure, deterministic AI",
+  "unitChecks": {
+    "backend": 198,
+    "mcp": 17,
+    "frontend": 26,
+    "offlineMetrics": 7,
+    "failures": 0,
+    "frontendBuild": "passed"
+  },
+  "httpChecks": [
+    {
+      "name": "MCP rejects invalid version 11.9",
+      "passed": true
+    },
+    {
+      "name": "MCP rejects invalid version 0",
+      "passed": true
+    },
+    {
+      "name": "MCP rejects invalid version -1",
+      "passed": true
+    },
+    {
+      "name": "MCP rejects invalid version 11",
+      "passed": true
+    },
+    {
+      "name": "MCP forwards exact published version and original identities",
+      "passed": true
+    }
+  ],
+  "uiChecks": [
+    {
+      "name": "real course search expands three original windows",
+      "passed": true
+    },
+    {
+      "name": "original 60000ms click opens actual video near requested time",
+      "passed": true,
+      "observedSeconds": 60.02113,
+      "durationSeconds": 1968.33619,
+      "readyState": 4,
+      "mediaError": null
+    },
+    {
+      "name": "return from playback keeps query and expanded original window",
+      "passed": true,
+      "observedQuery": "苍穹"
+    },
+    {
+      "name": "knowledge state component is keyed by account to reset on account change",
+      "verification": "source inspection; not a live two-account UI acceptance"
+    }
+  ],
+  "screenshots": [
+    "evidence-block-playback-20261009.png",
+    "evidence-block-ui-20261009.png"
+  ],
+  "limits": [
+    "No Milvus runtime or migration accepted",
+    "No production deployment",
+    "No claim semantic quality acceptance",
+    "Query screenshot shows surrounding knowledge workspace; original-window retention checked from visible UI control"
+  ]
+}

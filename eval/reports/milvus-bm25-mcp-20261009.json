@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-09",
+  "fixture": "Real Milvus/MySQL/Qdrant/HTTP/MCP on 13 frozen courses; shared configured principal",
+  "checks": [
+    {
+      "name": "same principal and scope returns same BM25 hits",
+      "passed": true
+    },
+    {
+      "name": "native BM25 marker and no warnings survive MCP",
+      "passed": true
+    },
+    {
+      "name": "MCP preserves real lexical degradation warning",
+      "passed": true
+    },
+    {
+      "name": "MCP recovery clears warning",
+      "passed": true
+    }
+  ],
+  "multiPrincipalMcpAccepted": false,
+  "generationModelInvoked": false
+}

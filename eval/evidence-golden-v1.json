@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 3,
+  "name": "course-evidence-v1",
+  "provenance": "Engineering questions grounded in real archived ASR/OCR; not student interviews. Explicit original explanation windows reviewed; transcript errors remain visible.",
+  "corpus": {
+    "path": "evaluation/seeds/course-index-snapshot-v1.json",
+    "sha256": "e473049a58d3d0019bd137c1eccfcdc3b8fadb181cf012936afb0455d9036950",
+    "videos": 13,
+    "windows": 674
+  },
+  "defaultK": 8,
+  "gates": {
+    "requiredEvidenceRecallAt8": 0.8,
+    "criticalAllEvidenceAt8": 1.0
+  },
+  "cases": [
+    {
+      "id": "tcp-close",
+      "split": "dev",
+      "question": "为什么 TCP 关闭连接需要四次挥手？TIME_WAIT 为什么要等待？",
+      "requiredEvidence": [
+        {
+          "aspect": "全双工",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-01",
+              "startMs": 1980000,
+              "endMs": 2040000,
+              "quote": ".In报文给客户端来表示他同意关闭连接。也就是说呢，其实因为这个atcp啊，它是全双工的，它是一个双向通道，所以关闭连接呢？要各自关各自的你这个被动方你这个服务端，它收到finv之后呢？它可能就是有一些业务数据，比方说你这个buffer当中呢，有未刷新的日志。这些业务数据都没发完，所以说他不能马上关，他必须先回一个ack来稳住对方，然后等数据发完之后呢再发自己的fin，所以呢不"
+            }
+          ]
+        },
+        {
+          "aspect": "重发",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-01",
+              "startMs": 2040000,
+              "endMs": 2100000,
+              "quote": "最后一个a c k送达了，就是说，如果第四次挥手的a c k丢了，那服务端会超时重发第三次挥手的这个f i n那客户端呢？如果说在这个time wait期间，他收到了重发的fin，他就会再发一次ack重置计时器。如果不等待的话呢？这个客户端就直接关那服务端，就永远也收不到这个ack，它就一直处于这个lastack状态，就浪费这服务器的资源嘛。然后第二个呢，它也是要让这些旧数据消"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "mvcc",
+      "split": "dev",
+      "question": "MVCC 怎样允许读写并行？旧版本链怎样保存数据？",
+      "requiredEvidence": [
+        {
+          "aspect": "快照",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-02",
+              "startMs": 1800000,
+              "endMs": 1860000,
+              "quote": "据库当中呢？当多个用户同时访问数据，那每个用户都可以看到在某一个时间点之前的数据快照。然后呢能够无阻塞的去执行查询和修改操作，不会互相干扰。那如果说在传统的这个所及。机制当中呢？如果一个事物正在写数据，那其他事物必须等待这个写事物完成才能读数据。那有了这个mvcc呢，它就允许读操作访问数据的一个旧版本的快照。那同时你这个写操作创建一个新的版本，那这样读写操作就可以并行进行不需要"
+            }
+          ]
+        },
+        {
+          "aspect": "版本链",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-02",
+              "startMs": 1860000,
+              "endMs": 1920000,
+              "quote": "my cycle当中，特别是这个indodb存储引擎，那这个mvcc呢主要是通过版本链和视图机制来实现的。我们说这个版本链呢，也就是这个indodb啊，它每一行记录其实有多个版本，那每次修改都是在这个安度log里面生成一条旧版本链，每一行数据除了业务字段，还有2个隐藏的字段，一个是dbtxid。它是最近修改，这条记录的是yd，还有一个呢，是这个d.B肉p.T.R，它是指向安都l"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "redis-persistence",
+      "split": "holdout",
+      "question": "Redis 的 RDB 与 AOF 分别怎样持久化？",
+      "requiredEvidence": [
+        {
+          "aspect": "rdb",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 300000,
+              "endMs": 360000,
+              "quote": "快照，指定时间间隔当中，把这个redis在某一时刻的这个数据状态保存到子班的一个rdb文件当中，它呢是可以通过两个命令，一个是save，一个是big save来手动。触发他的这个rd.B持久化的操作关于这个save命令和这个b g save的命令，它们之间也是有区别的，因为像这个save命令呢，它是同步的。把release所有的这个数据保存在磁盘当中的，而b g save命令呢"
+            }
+          ]
+        },
+        {
+          "aspect": "aof",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 360000,
+              "endMs": 420000,
+              "quote": "建立连接的时候，它也是根据这个主节点的rd.B文件来初始化这个数据集的。接着呢是aofaof呢？其实它的这个持久化呢是通过记录每一个写操作的命令，然后追加到aof文件当中来工作的，那，它主要作用呢？是解决这个数据持久化的问题？就解决了持久化的实质性呃，工作流程呢？是首先呢，当这个aof持久化功能被启用的时候呢？"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "cache-penetration",
+      "split": "dev",
+      "question": "缓存穿透是什么？有哪些处理办法？",
+      "requiredEvidence": [
+        {
+          "aspect": "缓存穿透",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 660000,
+              "endMs": 720000,
+              "quote": "呢？你最好就把这个三种缓存异常都背下来，然后以及他们相应的这个解决方案。首先呢，缓存穿透就是查询不存在的数据缓存，没有命中它直接穿过缓存到达数据库。那解决方案是什么呢？呃，第一个呢是可以缓存一些空数据那呃返回数据为空，然后把这个空结果给缓存，它的优点就比较简单，缺点呢是消耗内存可能会发生不一致的问题。第二个呢是使用这个布隆过滤器布隆过滤器呢，就检查一个元素是否在一个集合当中嘛，"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "cache-breakdown",
+      "split": "dev",
+      "question": "热点缓存过期引发击穿时怎么处理？",
+      "requiredEvidence": [
+        {
+          "aspect": "缓存击穿",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 720000,
+              "endMs": 780000,
+              "quote": "第二个呢是缓存击穿呃某一个，或者是少数几个数据被高频访问，那么当这个数据呢？在缓存过期的那一刻呢，大量的这个数据请求就到达了数据库，瞬间的这个压力就比较大，怎么去解决缓存击穿呢？首先呢，可以去添加护士锁如果说一个县城查询没有命中他获得这个锁之后呢来查询数据库去重建这个缓存，那其他县城因为没有获取锁，它只能去休"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "cache-avalanche",
+      "split": "holdout",
+      "question": "缓存雪崩的原因和预防办法是什么？",
+      "requiredEvidence": [
+        {
+          "aspect": "缓存雪崩",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 780000,
+              "endMs": 840000,
+              "quote": "么样去工作的？所以说呢，这个大家最好也了解一下基于自己的记忆去说。第三个就是这个缓存雪崩缓存雪崩呢，是只能在某一个时间点大量的缓存数据，同时过期或者是服务器突然宕机了，导致所有的这个请求都落在了数据库。那解决方案呢？首先呢，就是你可以给不同的这个k的这个ttl添加随机值，就尽量不让这些k同时过期。然后第二个呢就是。"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "deadlock",
+      "split": "dev",
+      "question": "死锁的四个必要条件是什么，如何避免？",
+      "requiredEvidence": [
+        {
+          "aspect": "四个条件",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-04",
+              "startMs": 1080000,
+              "endMs": 1140000,
+              "quote": "一个应该是在基础阶段必学的一个内容。呃所以说呢，大家要记住死索要产生他需要满足的四个条件，就是包括互斥条件持有，并等待条件，不可剥夺条件和循环。"
+            }
+          ]
+        },
+        {
+          "aspect": "破坏",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-04",
+              "startMs": 1140000,
+              "endMs": 1200000,
+              "quote": "条件另外呢，怎么样去避免死锁呢？是不是就要想办法去破坏这四个条件，只要你破坏其中一个，就可以比方说我们消除这个互斥条件。那这样的话呢？呃，其实1般是没有办法去实现的，因为呢很多这个资源，它是只能被一个县城占用的，就比如说锁那另外呢这个消除请求并持有条件呢，呃消除这个条件方法呢？会简单1些，比如说一个县城一次请求所有他需要的资源就可以，呃，第三个呢就"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "equals-hash",
+      "split": "dev",
+      "question": "为什么重写 equals 必须同时重写 hashCode？",
+      "requiredEvidence": [
+        {
+          "aspect": "必须相等",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-05",
+              "startMs": 720000,
+              "endMs": 780000,
+              "quote": "个java规定啊。如果说两个对对向ecos返回处那他们的这个hash code是必须相等的，反过来呢就不强制，但是呢，最好也是要遵循。"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "pool-rejection",
+      "split": "holdout",
+      "question": "线程池满了以后有哪些拒绝策略？",
+      "requiredEvidence": [
+        {
+          "aspect": "拒绝策略",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-06",
+              "startMs": 1620000,
+              "endMs": 1680000,
+              "quote": "先级。然后接着呢，就是这个handler，那他呃其实是有这一些策略的，比方说这个拒绝策略就是定义了当线程池和工作队列都满了之后呢。对于新提交的任务的处理的策略，那常见的拒绝策略呢就是包括抛出异常，直接丢弃。或者是丢弃任务的队列当中的最老的任务，然后由提交任务的线程来执行任务等等。"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "spring-ioc-aop",
+      "split": "dev",
+      "question": "Spring 的 IOC 与 AOP 各解决什么问题？",
+      "requiredEvidence": [
+        {
+          "aspect": "控制反转",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-07",
+              "startMs": 720000,
+              "endMs": 780000,
+              "quote": "这个spring工厂，它的运行的规则首先我们说这个ioc啊ioc呢，就是控制反转。那什么是ioc呢？那其实我们可以结合以前和现在的对比来说以前呢，我们在web层，我们要调service，那你可能自己要去new1个service。那这种呢，就是以前要靠你这个开发者来掌控这一切，那现在呢？那你只写这个auto wear的在user service前面，那这个spring呢就"
+            }
+          ]
+        },
+        {
+          "aspect": "aop",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-07",
+              "startMs": 1200000,
+              "endMs": 1260000,
+              "quote": "是无法解决，那这个呢就是有关ioc.整个这一块，它的一个总结那接着呢，我们再来看aop那aop呢，它叫做面向千面编程，什么是aop呢？就是说呢，它核心思想呢？是要把和业务无关的，这些杂事比方说像日志啊权限呀事务啊，都从业务代码里面抽出来统一去处理，就比如说呢，你写user service那核心业务呢是增山改差，但是每个方法呢都要写这个呃system out print line"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "mq-duplicate",
+      "split": "dev",
+      "question": "消息队列为什么会重复消费，业务应该注意什么？",
+      "requiredEvidence": [
+        {
+          "aspect": "重复消费",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-08",
+              "startMs": 960000,
+              "endMs": 1020000,
+              "quote": "然后呃，另外需要去额外处理，重复消费消息丢失顺序错乱和事物一致性等这些复杂的问题。那简单来讲呢？这个重复消费呢？就是说这个中转站他可能怕你漏听，所以说他他一件事情喊了两遍。嗯，比方说他可能没有收到你回你的回应，所以他又推了一次。那呃，那如果说你的代码当中没有做相应的设计，那他推两次就比方说给一个用户加积分，他可能推了2次，那你"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "mybatis-cache",
+      "split": "holdout",
+      "question": "MyBatis 的一级缓存与二级缓存分别在哪个范围生效？",
+      "requiredEvidence": [
+        {
+          "aspect": "SqlSession 一级缓存范围",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-09",
+              "startMs": 1320000,
+              "endMs": 1380000,
+              "quote": "是缓存，我们知道它是提升性能的一种。相当于标签一样的作用，那对于这个缓存呢，又有一级缓存二级缓存和这个共享缓存，那首先对于一级缓存，它是这种cycle session级别的，它是默认开启的，就相当于是这次对话的，它有一个这次的绘画，它有一个临时"
+            }
+          ]
+        },
+        {
+          "aspect": "Mapper 二级缓存范围",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-09",
+              "startMs": 1380000,
+              "endMs": 1440000,
+              "quote": "是调用了clear catch或者关闭了绘画，这个缓存就立刻失效了。然后呢是这个二级缓存二级缓存呢，它相当于是mapper级别的，它是跨会化共享的，它就好像是一个比方说你们公司有一个部门的公告栏这样的。那可能这个circle sessiona他查了数据，放到了公告栏，然后这个circle sessionb也就是另一个请求，他路过也能看到他就直接拿走去用了那所以呢，这个二级缓存它"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "g1",
+      "split": "holdout",
+      "question": "G1 为什么能减少内存碎片并控制停顿？",
+      "requiredEvidence": [
+        {
+          "aspect": "区域/碎片与停顿预测",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-10",
+              "startMs": 2220000,
+              "endMs": 2280000,
+              "quote": "大家可以分点来记从不同的维度出发，把它们给记一下，比方说这个cms短暂，但是不可预测g1呢是可以预测的，在这个停顿时间上，然后还有这个cms可能产生碎片，这个利用率不高，那g1呢，它是区域化管理的它的内存利用率高。那接着呢，我们来看四种引用，那也是决定对象生死的不同的这种引用。首先第一个呢是强饮用。那所有的g c roots能够找到的能够连上的这个对象呢，就不会被回收，也就是说"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "jwt",
+      "split": "dev",
+      "question": "苍穹外卖项目中 JWT 登录与后续请求校验怎样工作？",
+      "requiredEvidence": [
+        {
+          "aspect": "token",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-11",
+              "startMs": 1080000,
+              "endMs": 1140000,
+              "quote": "然后基于jwt的验证流程呢，我们你可以详细介绍一下啊，就是基于这种token的身份验证方法大概呢就是首先客户端使用用户名和跟密码去请求登录服务端收到请求，去验证用户名密码，然后验证成功后会发一个token，那再把这个token发送给客户端。客户端收到token以后呢？可以把它存储起来，比方说放在cookie或者是放在这个local storage里面那客户端呢？每"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "stock",
+      "split": "dev",
+      "question": "苍穹外卖如何处理多节点并发扣库存？",
+      "requiredEvidence": [
+        {
+          "aspect": "分布式锁",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-11",
+              "startMs": 900000,
+              "endMs": 960000,
+              "quote": "回库存不足的这种错误。那其实这种方法呢？是适用于读多写少的场景，然后还有呢，就是分布式锁。我们在分布式系统当中呢？我们是用分布式锁对库存进行加锁的，我们是确保同1时间只有一个节点，可以执行减库存的操作，因为我们刚刚说这个后台的服务器可能会有多个服务器，有多个节点嘛？那就避免这个多个节点之间的变化冲突。然后呃具体实现用这个呃还这个releas的原子操作就是releas和这个撸啊脚"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "session",
+      "split": "dev",
+      "question": "黑马点评为什么用 Redis 替代 Session 保存登录状态？",
+      "requiredEvidence": [
+        {
+          "aspect": "分布式共享",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-12",
+              "startMs": 600000,
+              "endMs": 660000,
+              "quote": "，所有的tom cat都去同一个redis去读写登录状态，然后它天然就是支持这种分布式共享的，而且呢？这个redis基于内存，我们也知道它读写速度是非常非常快的，可能是微秒级这种所以说呢，是完全能够满足高并发场景的一个响应要求的。所以说呢，呃，假如说面试官问你redis替换session，这么做的原因是什么？你就可以说一句话，我用redis存token替代tom cat本地的s"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "attention",
+      "split": "holdout",
+      "question": "Transformer 多头注意力为什么需要多个头？",
+      "requiredEvidence": [
+        {
+          "aspect": "多头注意力",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-13",
+              "startMs": 900000,
+              "endMs": 960000,
+              "quote": "式的，但是呢语言是极其复杂的，所以需要同时关注语法语义，还有它的一些感情等等。那多头注意力呢，就是并行跑多个注意力头，比方说八个头或者32个头，那每个头呢有自己独立的这种查询键和值。它的投影矩阵然后呢训练完成呢，不同的头就会自动分化有了头，就生成了这种语法检测的相关的工具。他可能关注主谓宾有的头呢，就生成了这种纸袋的消解器。他可能就重点要关注代词，有了头呢就成了实体的识别器。他"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "rag",
+      "split": "dev",
+      "question": "RAG 解决大模型的哪些知识问题，答案依据在哪里？",
+      "requiredEvidence": [
+        {
+          "aspect": "知识过期",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-13",
+              "startMs": 2040000,
+              "endMs": 2100000,
+              "quote": "像是一个记忆力很强，但是又很自负。他是1个偏科的学霸，那它有三个硬伤。一个呢就是知识过期，就是说他的知识呢，是指截止于训练，那天就比方说要你要问他今天天气怎么样，或者是最近新出的某一个手机好用不好用，他要么就不知道要么就是瞎编，那第二个呢就是他不懂你的一些个人的事情，就是说他不知道你们公司的内部报销流程"
+            }
+          ]
+        },
+        {
+          "aspect": "出处",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-13",
+              "startMs": 2100000,
+              "endMs": 2160000,
+              "quote": "指定的，就是说你有一个私有的知识库。那答案呢，就必须要在这个书里这个知识库里找到出处。我们说这个rag呢，它是有两条工作。"
+            }
+          ]
+        }
+      ],
+      "critical": false
+    },
+    {
+      "id": "cross-cache",
+      "split": "dev",
+      "question": "结合 Redis 课程与苍穹外卖，说明缓存穿透防护和菜品更新后的缓存一致性做法。",
+      "requiredEvidence": [
+        {
+          "aspect": "缓存穿透",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-03",
+              "startMs": 660000,
+              "endMs": 720000,
+              "quote": "呢？你最好就把这个三种缓存异常都背下来，然后以及他们相应的这个解决方案。首先呢，缓存穿透就是查询不存在的数据缓存，没有命中它直接穿过缓存到达数据库。那解决方案是什么呢？呃，第一个呢是可以缓存一些空数据那呃返回数据为空，然后把这个空结果给缓存，它的优点就比较简单，缺点呢是消耗内存可能会发生不一致的问题。第二个呢是使用这个布隆过滤器布隆过滤器呢，就检查一个元素是否在一个集合当中嘛，"
+            }
+          ]
+        },
+        {
+          "aspect": "清理缓存",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-11",
+              "startMs": 1380000,
+              "endMs": 1440000,
+              "quote": "一个分类下的菜品，保存一份缓存数据，然后数据库中菜品的数据有变更的时候呢，我们就清理缓存数据，然后这个spring catch这个框架呢，它就实现了这种基于助解的缓存功能，我们加1个注解来实现。也就是说，它相当于提供了一层抽象，然后底层的可以切换不同的这个缓存时限。你可以用release也可以用什么这个呃e h cash等等，那为了保证数据库和release的数据一致性呢，就修"
+            }
+          ]
+        }
+      ],
+      "critical": true
+    },
+    {
+      "id": "absent-k8s",
+      "split": "dev",
+      "question": "Kubernetes 调度器怎样工作？",
+      "requiredEvidence": [],
+      "expectRefusal": true
+    },
+    {
+      "id": "absent-kotlin",
+      "split": "holdout",
+      "question": "Kotlin 协程和 Go 的 goroutine 有什么区别？",
+      "requiredEvidence": [],
+      "expectRefusal": true
+    },
+    {
+      "id": "absent-react",
+      "split": "holdout",
+      "question": "React Hooks 的使用规则有哪些？",
+      "requiredEvidence": [],
+      "expectRefusal": true
+    },
+    {
+      "id": "cross-mq",
+      "split": "holdout",
+      "question": "消息队列课程中为什么会重复消费？黑马点评用 Redis Stream 的确认和重试机制如何支持异步秒杀？",
+      "critical": true,
+      "requiredEvidence": [
+        {
+          "aspect": "重复消费原因",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-08",
+              "startMs": 960000,
+              "endMs": 1020000,
+              "quote": "然后呃，另外需要去额外处理，重复消费消息丢失顺序错乱和事物一致性等这些复杂的问题。那简单来讲呢？这个重复消费呢？就是说这个中转站他可能怕你漏听，所以说他他一件事情喊了两遍。嗯，比方说他可能没有收到你回你的回应，所以他又推了一次。那呃，那如果说你的代码当中没有做相应的设计，那他推两次就比方说给一个用户加积分，他可能推了2次，那你"
+            }
+          ]
+        },
+        {
+          "aspect": "Stream 确认重试",
+          "alternatives": [
+            {
+              "mediaKey": "bili-mianshi-12",
+              "startMs": 2880000,
+              "endMs": 2940000,
+              "quote": "们这个stream，它是支持消费者组的，就是说多实力去分摊消息，然后它还有这个呃ack确认机制，也就是说消费失败后呢，可重试还有这个消息持久化，它保证这个release重启不丢，所以呢呃，我们来完成这个异步秒杀这样的一个方法方法，那所以呢这个stream呢？它本质上就是一个阻塞队列那消费者呢？就是用这个呃x read group还broke0这样的一个方法去阻塞等待消息来了就立"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
